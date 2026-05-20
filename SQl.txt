@@ -1,0 +1,373 @@
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 22
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| employee      |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table employee(id int, name varchar(50), email varchar(35), phone int, about varchar(50));
+ERROR 1050 (42S01): Table 'employee' already exists
+mysql> create table student(id int, name varchar(50), email varchar(35), phone int, about varchar(50));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| employee      |
+| student       |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++--------+----------+-----------------+------+
+| emp_id | emp_name | email           | age  |
++--------+----------+-----------------+------+
+|    101 | Divya    | divya@gamil.com |   25 |
++--------+----------+-----------------+------+
+1 row in set (0.00 sec)
+
+mysql> describe student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(50) | YES  |     | NULL    |       |
+| email | varchar(35) | YES  |     | NULL    |       |
+| phone | int         | YES  |     | NULL    |       |
+| about | varchar(50) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into student values(01, "Nasir", "nasir@gmail.com", 1637017926, "This is about of nasir");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *  from student;
++------+-------+-----------------+------------+------------------------+
+| id   | name  | email           | phone      | about                  |
++------+-------+-----------------+------------+------------------------+
+|    1 | Nasir | nasir@gmail.com | 1637017926 | This is about of nasir |
++------+-------+-----------------+------------+------------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into student values(02, "laion", "lalon@gmail.com", 1637417926, "This is about of laion");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student;
++------+-------+-----------------+------------+------------------------+
+| id   | name  | email           | phone      | about                  |
++------+-------+-----------------+------------+------------------------+
+|    1 | Nasir | nasir@gmail.com | 1637017926 | This is about of nasir |
+|    2 | laion | lalon@gmail.com | 1637417926 | This is about of laion |
++------+-------+-----------------+------------+------------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into student values(03, "kamrul", "kamrul@gmail.com", 1637411926, "This is about of This is about of kamrul");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++------+--------+------------------+------------+------------------------------------------+
+| id   | name   | email            | phone      | about                                    |
++------+--------+------------------+------------+------------------------------------------+
+|    1 | Nasir  | nasir@gmail.com  | 1637017926 | This is about of nasir                   |
+|    2 | laion  | lalon@gmail.com  | 1637417926 | This is about of laion                   |
+|    3 | kamrul | kamrul@gmail.com | 1637411926 | This is about of This is about of kamrul |
++------+--------+------------------+------------+------------------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values(03, "kamrul", "kamrul@gmail.com", 1637411926, "This is about of kamrul");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from student;
++------+--------+------------------+------------+------------------------------------------+
+| id   | name   | email            | phone      | about                                    |
++------+--------+------------------+------------+------------------------------------------+
+|    1 | Nasir  | nasir@gmail.com  | 1637017926 | This is about of nasir                   |
+|    2 | laion  | lalon@gmail.com  | 1637417926 | This is about of laion                   |
+|    3 | kamrul | kamrul@gmail.com | 1637411926 | This is about of This is about of kamrul |
+|    3 | kamrul | kamrul@gmail.com | 1637411926 | This is about of kamrul                  |
++------+--------+------------------+------------+------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table student(id int, name varchar(50), email varchar(50), phone bigint, about varchar(50));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(50) | YES  |     | NULL    |       |
+| email | varchar(50) | YES  |     | NULL    |       |
+| phone | bigint      | YES  |     | NULL    |       |
+| about | varchar(50) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student modify column id int primary key not auto_increment;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_increment' at line 1
+mysql> alter table student modify column id int primary key not null auto_increment;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| email | varchar(50) | YES  |     | NULL    |                |
+| phone | bigint      | YES  |     | NULL    |                |
+| about | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student modify column email varchar(50) unique not null;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| email | varchar(50) | NO   | UNI | NULL    |                |
+| phone | bigint      | YES  |     | NULL    |                |
+| about | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student modify column phone bigint default 000;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| email | varchar(50) | NO   | UNI | NULL    |                |
+| phone | bigint      | YES  |     | 0       |                |
+| about | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> create table employee1(emp_id int, emp_name varchar(100), DeptName varchar(10), Designation varchar(50), DOJ date, salary float, primary key(emp_id)));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table employee1(emp_id int, emp_name varchar(100), DeptName varchar(10), Designation varchar(50), DOJ date, salary float, primary key(emp_id));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee modify column emp_id int auto_increment;
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> alter table employee modify column emp_id int auto_increment;
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee modify column emp_id int primary key auto_increment;
+Query OK, 1 row affected (0.07 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| emp_id   | int         | NO   | PRI | NULL    | auto_increment |
+| emp_name | varchar(50) | YES  |     | NULL    |                |
+| email    | varchar(50) | YES  |     | NULL    |                |
+| age      | int         | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> describe student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| email | varchar(50) | NO   | UNI | NULL    |                |
+| phone | bigint      | YES  |     | 0       |                |
+| about | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| emp_id   | int         | NO   | PRI | NULL    | auto_increment |
+| emp_name | varchar(50) | YES  |     | NULL    |                |
+| email    | varchar(50) | YES  |     | NULL    |                |
+| age      | int         | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> drop table employee;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table employee1(emp_id int, emp_name varchar(100), DeptName varchar(10), Designation varchar(50), DOJ date, salary float, primary key(emp_id));
+ERROR 1050 (42S01): Table 'employee1' already exists
+mysql> create table employee(emp_id int, emp_name varchar(100), DeptName varchar(10), Designation varchar(50), DOJ date, salary float, primary key(emp_id));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> alter table epmloyee modify column emp_id int auto_increment;
+ERROR 1146 (42S02): Table 'mdb.epmloyee' doesn't exist
+mysql> create table employee(emp_id int, emp_name varchar(100), DeptName varchar(10), Designation varchar(50), DOJ date, salary float, primary key(emp_id));
+ERROR 1050 (42S01): Table 'employee' already exists
+mysql> drop table employee;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table employee(emp_id int, emp_name varchar(100), DeptName varchar(10), Designation varchar(50), DOJ date, salary float, primary key(emp_id));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> alter table epmloyee modify column emp_id int auto_increment;
+ERROR 1146 (42S02): Table 'mdb.epmloyee' doesn't exist
+mysql> alter table employee modify column emp_id int auto_increment;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> describe employee;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| emp_id      | int          | NO   | PRI | NULL    | auto_increment |
+| emp_name    | varchar(100) | YES  |     | NULL    |                |
+| DeptName    | varchar(10)  | YES  |     | NULL    |                |
+| Designation | varchar(50)  | YES  |     | NULL    |                |
+| DOJ         | date         | YES  |     | NULL    |                |
+| salary      | float        | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into employee values(1, "colleen hurst", "HQ", "regional director", ""2009-09-15", 205500),(2, "brielle williamson", "software", "integration specialist", "2012-12-02", 372000),(3, "garrett winter", "finance", "accountant", "2011-07-25", 170750),(4, "caesar vance", "sales", "sales support", "2011-12-12", 106450);
+    ">
+    "> ^X^C
+mysql> insert into employee values(1, "colleen hurst", "HQ", "regional director", ""2009-09-15", 205500),(2, "brielle williamson", "software", "integration specialist", "2012-12-02", 372000),(3, "garrett winter", "finance", "accountant", "2011-07-25", 170750),(4, "caesar vance", "sales", "sales support", "2011-12-12", 106450);
+    "> i^C
+mysql> insert into epmloyee values(1, "colleen hurst", "hq", "regional director", "2009-09-15", 205500);
+ERROR 1146 (42S02): Table 'mdb.epmloyee' doesn't exist
+mysql> insert into employee values(1, "colleen hurst", "hq", "regional director", "2009-09-15", 205500);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> describe employee;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| emp_id      | int          | NO   | PRI | NULL    | auto_increment |
+| emp_name    | varchar(100) | YES  |     | NULL    |                |
+| DeptName    | varchar(10)  | YES  |     | NULL    |                |
+| Designation | varchar(50)  | YES  |     | NULL    |                |
+| DOJ         | date         | YES  |     | NULL    |                |
+| salary      | float        | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee;
++--------+---------------+----------+-------------------+------------+--------+
+| emp_id | emp_name      | DeptName | Designation       | DOJ        | salary |
++--------+---------------+----------+-------------------+------------+--------+
+|      1 | colleen hurst | hq       | regional director | 2009-09-15 | 205500 |
++--------+---------------+----------+-------------------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into employee values(2, "brielle williamson", "software", "integration specialist", "2012-12-02", 372000),(3, "garrett winters", "finance", "accountant", "2011-07-25", 170750),(4, "caesar vance", "sales", "sales support", "2011-12-12", 106450),(5, "sonya frost", "software", "2008-12-13", 133600),(6, "herrod chandler", "sales", "sales executive", "2012-08-06", 127500),(7, "jena gaines", "hq", "office manager", "2008-12-19", 90560);
+ERROR 1136 (21S01): Column count doesn't match value count at row 4
+mysql>
+mysql> insert into employee values(2, "brielle williamson", "software", "integration specialist", "2012-12-02", 372000),(3, "garrett winters", "finance", "accountant", "2011-07-25", 170750),(4, "caesar vance", "sales", "sales support", "2011-12-12", 106450),(5, "sonya frost", "software","software engineer" "2008-12-13", 133600),(6, "herrod chandler", "sales", "sales executive", "2012-08-06", 127500),(7, "jena gaines", "hq", "office manager", "2008-12-19", 90560);
+ERROR 1136 (21S01): Column count doesn't match value count at row 4
+mysql> insert into employee values(2, "brielle williamson", "software", "integration specialist", "2012-12-02", 372000),(3, "garrett winters", "finance", "accountant", "2011-07-25", 170750),(4, "caesar vance", "sales", "sales support", "2011-12-12", 106450),(5, "sonya frost", "software","software engineer", "2008-12-13", 133600),(6, "herrod chandler", "sales", "sales executive", "2012-08-06", 127500),(7, "jena gaines", "hq", "office manager", "2008-12-19", 90560);
+Query OK, 6 rows affected (0.02 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++--------+--------------------+----------+------------------------+------------+--------+
+| emp_id | emp_name           | DeptName | Designation            | DOJ        | salary |
++--------+--------------------+----------+------------------------+------------+--------+
+|      1 | colleen hurst      | hq       | regional director      | 2009-09-15 | 205500 |
+|      2 | brielle williamson | software | integration specialist | 2012-12-02 | 372000 |
+|      3 | garrett winters    | finance  | accountant             | 2011-07-25 | 170750 |
+|      4 | caesar vance       | sales    | sales support          | 2011-12-12 | 106450 |
+|      5 | sonya frost        | software | software engineer      | 2008-12-13 | 133600 |
+|      6 | herrod chandler    | sales    | sales executive        | 2012-08-06 | 127500 |
+|      7 | jena gaines        | hq       | office manager         | 2008-12-19 |  90560 |
++--------+--------------------+----------+------------------------+------------+--------+
+7 rows in set (0.00 sec)
+
