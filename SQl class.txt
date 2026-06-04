@@ -1,0 +1,3391 @@
+===> Date : 13-05-2026
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 83
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| joins              |
+| joint              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> create table employee(emp_id int, emp_name varchar(50), email varchar(50));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee add column gender varchar(10);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| gender   | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee add column dob date after email;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| gender   | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee drop column gender;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee rename email to emp_email;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to emp_email' at line 1
+mysql> alter table employee rename email to emp_email varchar(50));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to emp_email varchar(50))' at line 1
+mysql> alter table employee rename email to emp_email;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to emp_email' at line 1
+mysql> alter table employee rename column dob to emp_id;
+ERROR 1060 (42S21): Duplicate column name 'emp_id'
+mysql> alter table employee rename column dob to emp_dob;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| emp_dob  | date        | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee modify column emp_id bigint;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | bigint      | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| emp_dob  | date        | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+
+
+
+
+===> Date : 14-05-2026
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 85
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| joins              |
+| joint              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| departments   |
+| employee      |
+| employees     |
+| marks         |
+| students      |
+| subjects      |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | bigint      | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| emp_dob  | date        | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee drop column emp_dob;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | bigint      | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee add column age int;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | bigint      | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into employee values(101, "Divya", "divya@gmail.com", 26);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from employee;
++--------+----------+-----------------+------+
+| emp_id | emp_name | email           | age  |
++--------+----------+-----------------+------+
+|    101 | Divya    | divya@gmail.com |   26 |
++--------+----------+-----------------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into employee values(102, "Krupesh", "krupesh@gmail.com", 27),
+    -> (103, "vidhi", "vidhi@gmail.com", 20),
+    -> (104, "nandini", "nandini@gmail.com", 20),
+    -> (105, "Rudar"
+    ->
+    ->
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4
+mysql> insert into employee values(102, "Krupesh", "krupesh@gmail.com", 27),
+    -> (103, "vidhi", "vidhi@gmail.com", 20),
+    -> (104, "nandini", "nandini@gmail.com", 20),
+    -> (105, "Rudra", "rudra@gmail.com", 25);
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++--------+----------+-------------------+------+
+| emp_id | emp_name | email             | age  |
++--------+----------+-------------------+------+
+|    101 | Divya    | divya@gmail.com   |   26 |
+|    102 | Krupesh  | krupesh@gmail.com |   27 |
+|    103 | vidhi    | vidhi@gmail.com   |   20 |
+|    104 | nandini  | nandini@gmail.com |   20 |
+|    105 | Rudra    | rudra@gmail.com   |   25 |
++--------+----------+-------------------+------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+
+
+===> Date : 15-05-2026
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 86
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| joins              |
+| joint              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| departments   |
+| employee      |
+| employees     |
+| marks         |
+| students      |
+| subjects      |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | bigint      | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++--------+----------+-------------------+------+
+| emp_id | emp_name | email             | age  |
++--------+----------+-------------------+------+
+|    101 | Divya    | divya@gmail.com   |   26 |
+|    102 | Krupesh  | krupesh@gmail.com |   27 |
+|    103 | vidhi    | vidhi@gmail.com   |   20 |
+|    104 | nandini  | nandini@gmail.com |   20 |
+|    105 | Rudra    | rudra@gmail.com   |   25 |
++--------+----------+-------------------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * form employee where age >=25;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'form employee where age >=25' at line 1
+mysql> select * from employee where age >=25;
++--------+----------+-------------------+------+
+| emp_id | emp_name | email             | age  |
++--------+----------+-------------------+------+
+|    101 | Divya    | divya@gmail.com   |   26 |
+|    102 | Krupesh  | krupesh@gmail.com |   27 |
+|    105 | Rudra    | rudra@gmail.com   |   25 |
++--------+----------+-------------------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where emp_name like 'i%';
+Empty set (0.00 sec)
+
+mysql> select * from employee where emp_name like '%i';
++--------+----------+-------------------+------+
+| emp_id | emp_name | email             | age  |
++--------+----------+-------------------+------+
+|    103 | vidhi    | vidhi@gmail.com   |   20 |
+|    104 | nandini  | nandini@gmail.com |   20 |
++--------+----------+-------------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee where emp_name like 'v%';
++--------+----------+-----------------+------+
+| emp_id | emp_name | email           | age  |
++--------+----------+-----------------+------+
+|    103 | vidhi    | vidhi@gmail.com |   20 |
++--------+----------+-----------------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where emp_name like 'v%' and email like '@gmail.com';
+Empty set (0.00 sec)
+
+mysql> select * from employee where emp_name like 'v%' or email like '@gmail.com';
++--------+----------+-----------------+------+
+| emp_id | emp_name | email           | age  |
++--------+----------+-----------------+------+
+|    103 | vidhi    | vidhi@gmail.com |   20 |
++--------+----------+-----------------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where age > 20 and emp_name = "vidhi";
+Empty set (0.00 sec)
+
+mysql> select * from employee where age >=20 and emp_name = "vidhi";
++--------+----------+-----------------+------+
+| emp_id | emp_name | email           | age  |
++--------+----------+-----------------+------+
+|    103 | vidhi    | vidhi@gmail.com |   20 |
++--------+----------+-----------------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where emp_name like "R_d_r%";
+Empty set (0.00 sec)
+
+mysql> select * from employee where emp_name like "R_d%";
++--------+----------+-----------------+------+
+| emp_id | emp_name | email           | age  |
++--------+----------+-----------------+------+
+|    105 | Rudra    | rudra@gmail.com |   25 |
++--------+----------+-----------------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee order by age;
++--------+----------+-------------------+------+
+| emp_id | emp_name | email             | age  |
++--------+----------+-------------------+------+
+|    103 | vidhi    | vidhi@gmail.com   |   20 |
+|    104 | nandini  | nandini@gmail.com |   20 |
+|    105 | Rudra    | rudra@gmail.com   |   25 |
+|    101 | Divya    | divya@gmail.com   |   26 |
+|    102 | Krupesh  | krupesh@gmail.com |   27 |
++--------+----------+-------------------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee order by age ace;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ace' at line 1
+mysql> select * from employee order by age asceding;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'asceding' at line 1
+mysql> select * from employee order by age asc;
++--------+----------+-------------------+------+
+| emp_id | emp_name | email             | age  |
++--------+----------+-------------------+------+
+|    103 | vidhi    | vidhi@gmail.com   |   20 |
+|    104 | nandini  | nandini@gmail.com |   20 |
+|    105 | Rudra    | rudra@gmail.com   |   25 |
+|    101 | Divya    | divya@gmail.com   |   26 |
+|    102 | Krupesh  | krupesh@gmail.com |   27 |
++--------+----------+-------------------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee order by age desc;
++--------+----------+-------------------+------+
+| emp_id | emp_name | email             | age  |
++--------+----------+-------------------+------+
+|    102 | Krupesh  | krupesh@gmail.com |   27 |
+|    101 | Divya    | divya@gmail.com   |   26 |
+|    105 | Rudra    | rudra@gmail.com   |   25 |
+|    103 | vidhi    | vidhi@gmail.com   |   20 |
+|    104 | nandini  | nandini@gmail.com |   20 |
++--------+----------+-------------------+------+
+5 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+===> Date : 16-05-2026
+
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 22
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| employee      |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table employee(id int, name varchar(50), email varchar(35), phone int, about varchar(50));
+ERROR 1050 (42S01): Table 'employee' already exists
+mysql> create table student(id int, name varchar(50), email varchar(35), phone int, about varchar(50));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| employee      |
+| student       |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++--------+----------+-----------------+------+
+| emp_id | emp_name | email           | age  |
++--------+----------+-----------------+------+
+|    101 | Divya    | divya@gamil.com |   25 |
++--------+----------+-----------------+------+
+1 row in set (0.00 sec)
+
+mysql> describe student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(50) | YES  |     | NULL    |       |
+| email | varchar(35) | YES  |     | NULL    |       |
+| phone | int         | YES  |     | NULL    |       |
+| about | varchar(50) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into student values(01, "Nasir", "nasir@gmail.com", 1637017926, "This is about of nasir");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *  from student;
++------+-------+-----------------+------------+------------------------+
+| id   | name  | email           | phone      | about                  |
++------+-------+-----------------+------------+------------------------+
+|    1 | Nasir | nasir@gmail.com | 1637017926 | This is about of nasir |
++------+-------+-----------------+------------+------------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into student values(02, "laion", "lalon@gmail.com", 1637417926, "This is about of laion");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student;
++------+-------+-----------------+------------+------------------------+
+| id   | name  | email           | phone      | about                  |
++------+-------+-----------------+------------+------------------------+
+|    1 | Nasir | nasir@gmail.com | 1637017926 | This is about of nasir |
+|    2 | laion | lalon@gmail.com | 1637417926 | This is about of laion |
++------+-------+-----------------+------------+------------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into student values(03, "kamrul", "kamrul@gmail.com", 1637411926, "This is about of This is about of kamrul");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++------+--------+------------------+------------+------------------------------------------+
+| id   | name   | email            | phone      | about                                    |
++------+--------+------------------+------------+------------------------------------------+
+|    1 | Nasir  | nasir@gmail.com  | 1637017926 | This is about of nasir                   |
+|    2 | laion  | lalon@gmail.com  | 1637417926 | This is about of laion                   |
+|    3 | kamrul | kamrul@gmail.com | 1637411926 | This is about of This is about of kamrul |
++------+--------+------------------+------------+------------------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values(03, "kamrul", "kamrul@gmail.com", 1637411926, "This is about of kamrul");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from student;
++------+--------+------------------+------------+------------------------------------------+
+| id   | name   | email            | phone      | about                                    |
++------+--------+------------------+------------+------------------------------------------+
+|    1 | Nasir  | nasir@gmail.com  | 1637017926 | This is about of nasir                   |
+|    2 | laion  | lalon@gmail.com  | 1637417926 | This is about of laion                   |
+|    3 | kamrul | kamrul@gmail.com | 1637411926 | This is about of This is about of kamrul |
+|    3 | kamrul | kamrul@gmail.com | 1637411926 | This is about of kamrul                  |
++------+--------+------------------+------------+------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table student(id int, name varchar(50), email varchar(50), phone bigint, about varchar(50));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(50) | YES  |     | NULL    |       |
+| email | varchar(50) | YES  |     | NULL    |       |
+| phone | bigint      | YES  |     | NULL    |       |
+| about | varchar(50) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student modify column id int primary key not auto_increment;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_increment' at line 1
+mysql> alter table student modify column id int primary key not null auto_increment;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| email | varchar(50) | YES  |     | NULL    |                |
+| phone | bigint      | YES  |     | NULL    |                |
+| about | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student modify column email varchar(50) unique not null;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| email | varchar(50) | NO   | UNI | NULL    |                |
+| phone | bigint      | YES  |     | NULL    |                |
+| about | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student modify column phone bigint default 000;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| email | varchar(50) | NO   | UNI | NULL    |                |
+| phone | bigint      | YES  |     | 0       |                |
+| about | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> create table employee1(emp_id int, emp_name varchar(100), DeptName varchar(10), Designation varchar(50), DOJ date, salary float, primary key(emp_id)));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table employee1(emp_id int, emp_name varchar(100), DeptName varchar(10), Designation varchar(50), DOJ date, salary float, primary key(emp_id));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee modify column emp_id int auto_increment;
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> alter table employee modify column emp_id int auto_increment;
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> describe employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| email    | varchar(50) | YES  |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee modify column emp_id int primary key auto_increment;
+Query OK, 1 row affected (0.07 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| emp_id   | int         | NO   | PRI | NULL    | auto_increment |
+| emp_name | varchar(50) | YES  |     | NULL    |                |
+| email    | varchar(50) | YES  |     | NULL    |                |
+| age      | int         | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> describe student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| email | varchar(50) | NO   | UNI | NULL    |                |
+| phone | bigint      | YES  |     | 0       |                |
+| about | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> describe employee;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| emp_id   | int         | NO   | PRI | NULL    | auto_increment |
+| emp_name | varchar(50) | YES  |     | NULL    |                |
+| email    | varchar(50) | YES  |     | NULL    |                |
+| age      | int         | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> drop table employee;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table employee1(emp_id int, emp_name varchar(100), DeptName varchar(10), Designation varchar(50), DOJ date, salary float, primary key(emp_id));
+ERROR 1050 (42S01): Table 'employee1' already exists
+mysql> create table employee(emp_id int, emp_name varchar(100), DeptName varchar(10), Designation varchar(50), DOJ date, salary float, primary key(emp_id));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> alter table epmloyee modify column emp_id int auto_increment;
+ERROR 1146 (42S02): Table 'mdb.epmloyee' doesn't exist
+mysql> create table employee(emp_id int, emp_name varchar(100), DeptName varchar(10), Designation varchar(50), DOJ date, salary float, primary key(emp_id));
+ERROR 1050 (42S01): Table 'employee' already exists
+mysql> drop table employee;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table employee(emp_id int, emp_name varchar(100), DeptName varchar(10), Designation varchar(50), DOJ date, salary float, primary key(emp_id));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> alter table epmloyee modify column emp_id int auto_increment;
+ERROR 1146 (42S02): Table 'mdb.epmloyee' doesn't exist
+mysql> alter table employee modify column emp_id int auto_increment;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| emp_id      | int          | NO   | PRI | NULL    | auto_increment |
+| emp_name    | varchar(100) | YES  |     | NULL    |                |
+| DeptName    | varchar(10)  | YES  |     | NULL    |                |
+| Designation | varchar(50)  | YES  |     | NULL    |                |
+| DOJ         | date         | YES  |     | NULL    |                |
+| salary      | float        | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into employee values(1, "colleen hurst", "HQ", "regional director", ""2009-09-15", 205500),(2, "brielle williamson", "software", "integration specialist", "2012-12-02", 372000),(3, "garrett winter", "finance", "accountant", "2011-07-25", 170750),(4, "caesar vance", "sales", "sales support", "2011-12-12", 106450);
+    ">
+    "> ^X^C
+mysql> insert into employee values(1, "colleen hurst", "HQ", "regional director", ""2009-09-15", 205500),(2, "brielle williamson", "software", "integration specialist", "2012-12-02", 372000),(3, "garrett winter", "finance", "accountant", "2011-07-25", 170750),(4, "caesar vance", "sales", "sales support", "2011-12-12", 106450);
+    "> i^C
+mysql> insert into epmloyee values(1, "colleen hurst", "hq", "regional director", "2009-09-15", 205500);
+ERROR 1146 (42S02): Table 'mdb.epmloyee' doesn't exist
+mysql> insert into employee values(1, "colleen hurst", "hq", "regional director", "2009-09-15", 205500);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> describe employee;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| emp_id      | int          | NO   | PRI | NULL    | auto_increment |
+| emp_name    | varchar(100) | YES  |     | NULL    |                |
+| DeptName    | varchar(10)  | YES  |     | NULL    |                |
+| Designation | varchar(50)  | YES  |     | NULL    |                |
+| DOJ         | date         | YES  |     | NULL    |                |
+| salary      | float        | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee;
++--------+---------------+----------+-------------------+------------+--------+
+| emp_id | emp_name      | DeptName | Designation       | DOJ        | salary |
++--------+---------------+----------+-------------------+------------+--------+
+|      1 | colleen hurst | hq       | regional director | 2009-09-15 | 205500 |
++--------+---------------+----------+-------------------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into employee values(2, "brielle williamson", "software", "integration specialist", "2012-12-02", 372000),(3, "garrett winters", "finance", "accountant", "2011-07-25", 170750),(4, "caesar vance", "sales", "sales support", "2011-12-12", 106450),(5, "sonya frost", "software", "2008-12-13", 133600),(6, "herrod chandler", "sales", "sales executive", "2012-08-06", 127500),(7, "jena gaines", "hq", "office manager", "2008-12-19", 90560);
+ERROR 1136 (21S01): Column count doesn't match value count at row 4
+mysql>
+mysql> insert into employee values(2, "brielle williamson", "software", "integration specialist", "2012-12-02", 372000),(3, "garrett winters", "finance", "accountant", "2011-07-25", 170750),(4, "caesar vance", "sales", "sales support", "2011-12-12", 106450),(5, "sonya frost", "software","software engineer" "2008-12-13", 133600),(6, "herrod chandler", "sales", "sales executive", "2012-08-06", 127500),(7, "jena gaines", "hq", "office manager", "2008-12-19", 90560);
+ERROR 1136 (21S01): Column count doesn't match value count at row 4
+mysql> insert into employee values(2, "brielle williamson", "software", "integration specialist", "2012-12-02", 372000),(3, "garrett winters", "finance", "accountant", "2011-07-25", 170750),(4, "caesar vance", "sales", "sales support", "2011-12-12", 106450),(5, "sonya frost", "software","software engineer", "2008-12-13", 133600),(6, "herrod chandler", "sales", "sales executive", "2012-08-06", 127500),(7, "jena gaines", "hq", "office manager", "2008-12-19", 90560);
+Query OK, 6 rows affected (0.02 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++--------+--------------------+----------+------------------------+------------+--------+
+| emp_id | emp_name           | DeptName | Designation            | DOJ        | salary |
++--------+--------------------+----------+------------------------+------------+--------+
+|      1 | colleen hurst      | hq       | regional director      | 2009-09-15 | 205500 |
+|      2 | brielle williamson | software | integration specialist | 2012-12-02 | 372000 |
+|      3 | garrett winters    | finance  | accountant             | 2011-07-25 | 170750 |
+|      4 | caesar vance       | sales    | sales support          | 2011-12-12 | 106450 |
+|      5 | sonya frost        | software | software engineer      | 2008-12-13 | 133600 |
+|      6 | herrod chandler    | sales    | sales executive        | 2012-08-06 | 127500 |
+|      7 | jena gaines        | hq       | office manager         | 2008-12-19 |  90560 |
++--------+--------------------+----------+------------------------+------------+--------+
+7 rows in set (0.00 sec)
+
+
+
+
+
+
+
+===> Date : 18-05-2026
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 34
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| employee      |
+| stu           |
+| student       |
++---------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee;
++--------+---------------+------------------------+--------+
+| emp_id | emp_name      | emp_email              | gender |
++--------+---------------+------------------------+--------+
+|    101 | vidhi patel   | vidhi@gmail.com        | F      |
+|    102 | nandini patel | nandinipatel@gmail.com | F      |
+|    103 | rudra tailor  | rudra@gmail.com        | M      |
+|    104 | divya shah    | divya@gmail.com        | F      |
+|    101 | vidhi patel   | vidhi@gmail.com        | F      |
+|    102 | nandini patel | nandinipatel@gmail.com | F      |
+|    103 | rudra tailor  | rudra@gmail.com        | M      |
+|    104 | divya shah    | divya@gmail.com        | F      |
+|    101 | vidhi patel   | vidhi@gmail.com        | F      |
+|    102 | nandini patel | nandinipatel@gmail.com | F      |
+|    103 | rudra tailor  | rudra@gmail.com        | M      |
+|    104 | divya shah    | divya@gmail.com        | F      |
++--------+---------------+------------------------+--------+
+12 rows in set (0.00 sec)
+
+mysql> select * from employees;
+ERROR 1146 (42S02): Table 'mdb.employees' doesn't exist
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| employee      |
+| stu           |
+| student       |
++---------------+
+3 rows in set (0.00 sec)
+
+mysql> create table employees(emp_id, int primary key auto_increment, emp
+    -> create table employees(emp_id, int primary key auto_increment, emp_name varchar(50), emp_email varchar(45), age int, city varchar(60));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', int primary key auto_increment, emp
+create table employees(emp_id, int primary' at line 1
+mysql> create table employees(emp_id, int primary key auto_increment, emp_name varchar(50), emp_email varchar(45), age int, city varchar(60));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', int primary key auto_increment, emp_name varchar(50), emp_email varchar(45), a' at line 1
+mysql> create table employees(emp_id int primary key auto_increment, emp_name varchar(50), emp_email varchar(45), age int, city varchar(60));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| employee      |
+| employees     |
+| stu           |
+| student       |
++---------------+
+4 rows in set (0.00 sec)
+
+mysql> describe employees;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| emp_id    | int         | NO   | PRI | NULL    | auto_increment |
+| emp_name  | varchar(50) | YES  |     | NULL    |                |
+| emp_email | varchar(45) | YES  |     | NULL    |                |
+| age       | int         | YES  |     | NULL    |                |
+| city      | varchar(60) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into employees(empname,emp_email, age, city) values("vidhi", "vidhi@gmail.com", 20, "vadodara");
+ERROR 1054 (42S22): Unknown column 'empname' in 'field list'
+mysql> insert into employees(emp_name,emp_email, age, city) values("vidhi", "vidhi@gmail.com", 20, "vadodara");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from employees;
++--------+----------+-----------------+------+----------+
+| emp_id | emp_name | emp_email       | age  | city     |
++--------+----------+-----------------+------+----------+
+|      1 | vidhi    | vidhi@gmail.com |   20 | vadodara |
++--------+----------+-----------------+------+----------+
+1 row in set (0.00 sec)
+
+mysql> insert into employees(emp_name,emp_email, age, city) values("rudra", "rudra@gmail.com", 25, "vadodara");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from employees;
++--------+----------+-----------------+------+----------+
+| emp_id | emp_name | emp_email       | age  | city     |
++--------+----------+-----------------+------+----------+
+|      1 | vidhi    | vidhi@gmail.com |   20 | vadodara |
+|      2 | rudra    | rudra@gmail.com |   25 | vadodara |
++--------+----------+-----------------+------+----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into employees(emp_name,emp_email, age, city) values("divya", "divya@gmail.com", 24, "vadodara"),("sakshi", "sakshi@gmail.com", 26, "surat");
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from employees;
++--------+----------+------------------+------+----------+
+| emp_id | emp_name | emp_email        | age  | city     |
++--------+----------+------------------+------+----------+
+|      1 | vidhi    | vidhi@gmail.com  |   20 | vadodara |
+|      2 | rudra    | rudra@gmail.com  |   25 | vadodara |
+|      3 | divya    | divya@gmail.com  |   24 | vadodara |
+|      4 | sakshi   | sakshi@gmail.com |   26 | surat    |
++--------+----------+------------------+------+----------+
+4 rows in set (0.00 sec)
+
+mysql> insert into employees(emp_name,emp_email, age, city) values("nandini", "nandini@gmail.com", 20, "Ahmedabad"),("hardik", "hardik@gmail.com", 32, "padra");
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from employees;
++--------+----------+-------------------+------+-----------+
+| emp_id | emp_name | emp_email         | age  | city      |
++--------+----------+-------------------+------+-----------+
+|      1 | vidhi    | vidhi@gmail.com   |   20 | vadodara  |
+|      2 | rudra    | rudra@gmail.com   |   25 | vadodara  |
+|      3 | divya    | divya@gmail.com   |   24 | vadodara  |
+|      4 | sakshi   | sakshi@gmail.com  |   26 | surat     |
+|      5 | nandini  | nandini@gmail.com |   20 | Ahmedabad |
+|      6 | hardik   | hardik@gmail.com  |   32 | padra     |
++--------+----------+-------------------+------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> insert into employees(emp_name,emp_email, age, city) values("shanvi", "shanvi@gmail.com", 20, "vadodara");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from employees;
++--------+----------+-------------------+------+-----------+
+| emp_id | emp_name | emp_email         | age  | city      |
++--------+----------+-------------------+------+-----------+
+|      1 | vidhi    | vidhi@gmail.com   |   20 | vadodara  |
+|      2 | rudra    | rudra@gmail.com   |   25 | vadodara  |
+|      3 | divya    | divya@gmail.com   |   24 | vadodara  |
+|      4 | sakshi   | sakshi@gmail.com  |   26 | surat     |
+|      5 | nandini  | nandini@gmail.com |   20 | Ahmedabad |
+|      6 | hardik   | hardik@gmail.com  |   32 | padra     |
+|      7 | shanvi   | shanvi@gmail.com  |   20 | vadodara  |
++--------+----------+-------------------+------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> select emp_name, emp_email from employees where age >20;
++----------+------------------+
+| emp_name | emp_email        |
++----------+------------------+
+| rudra    | rudra@gmail.com  |
+| divya    | divya@gmail.com  |
+| sakshi   | sakshi@gmail.com |
+| hardik   | hardik@gmail.com |
++----------+------------------+
+4 rows in set (0.00 sec)
+
+mysql> select emp_name, emp_email from employees where age >20 order by age desc;
++----------+------------------+
+| emp_name | emp_email        |
++----------+------------------+
+| hardik   | hardik@gmail.com |
+| sakshi   | sakshi@gmail.com |
+| rudra    | rudra@gmail.com  |
+| divya    | divya@gmail.com  |
++----------+------------------+
+4 rows in set (0.00 sec)
+
+mysql> select emp_name, emp_email, age from employees where age >20 order by age desc;
++----------+------------------+------+
+| emp_name | emp_email        | age  |
++----------+------------------+------+
+| hardik   | hardik@gmail.com |   32 |
+| sakshi   | sakshi@gmail.com |   26 |
+| rudra    | rudra@gmail.com  |   25 |
+| divya    | divya@gmail.com  |   24 |
++----------+------------------+------+
+4 rows in set (0.00 sec)
+
+mysql> select max(age) as ''maximum age' from employee;
+    '> select max(age) as 'maximum age' from employee;
+    '> ^C
+mysql> select max(age) as 'maximum age' from employee;
+ERROR 1054 (42S22): Unknown column 'age' in 'field list'
+mysql> select max(age) as 'maximum age' from employees;
++-------------+
+| maximum age |
++-------------+
+|          32 |
++-------------+
+1 row in set (0.02 sec)
+
+mysql> select min(age) as 'minimum age' from employees;
++-------------+
+| minimum age |
++-------------+
+|          20 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(age) as 'sum age' from employees;
++---------+
+| sum age |
++---------+
+|     167 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select Ave(age) as 'averange age' from employees;
+ERROR 1305 (42000): FUNCTION mdb.Ave does not exist
+mysql> select Ave(age) as 'Averange age' from employees;
+ERROR 1305 (42000): FUNCTION mdb.Ave does not exist
+mysql> select Avg(age) as 'Averange age' from employees;
++--------------+
+| Averange age |
++--------------+
+|      23.8571 |
++--------------+
+1 row in set (0.02 sec)
+
+mysql> select std(age) as 'Standard Deviation' from employees;
++--------------------+
+| Standard Deviation |
++--------------------+
+|  4.085814184592883 |
++--------------------+
+1 row in set (0.02 sec)
+
+mysql> delect from employees where emp_id = 7;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delect from employees where emp_id = 7' at line 1
+mysql> delect from employees where empid = 7;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delect from employees where empid = 7' at line 1
+mysql> delec from employees where emp_id = 7;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delec from employees where emp_id = 7' at line 1
+mysql> delete from employees where emp_id = 7;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from employees;
++--------+----------+-------------------+------+-----------+
+| emp_id | emp_name | emp_email         | age  | city      |
++--------+----------+-------------------+------+-----------+
+|      1 | vidhi    | vidhi@gmail.com   |   20 | vadodara  |
+|      2 | rudra    | rudra@gmail.com   |   25 | vadodara  |
+|      3 | divya    | divya@gmail.com   |   24 | vadodara  |
+|      4 | sakshi   | sakshi@gmail.com  |   26 | surat     |
+|      5 | nandini  | nandini@gmail.com |   20 | Ahmedabad |
+|      6 | hardik   | hardik@gmail.com  |   32 | padra     |
++--------+----------+-------------------+------+-----------+
+6 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+===> Date : 19-05-2026
+
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 41
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| employee      |
+| employees     |
+| stu           |
+| student       |
++---------------+
+4 rows in set (0.00 sec)
+
+mysql> describe employees;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| emp_id    | int         | NO   | PRI | NULL    | auto_increment |
+| emp_name  | varchar(50) | YES  |     | NULL    |                |
+| emp_email | varchar(45) | YES  |     | NULL    |                |
+| age       | int         | YES  |     | NULL    |                |
+| city      | varchar(60) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> create table employee1(empid int, empname varchar(100), email varchar(50), age int, city varchar(50));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe employee1;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| empid   | int          | YES  |     | NULL    |       |
+| empname | varchar(100) | YES  |     | NULL    |       |
+| email   | varchar(50)  | YES  |     | NULL    |       |
+| age     | int          | YES  |     | NULL    |       |
+| city    | varchar(50)  | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee1 and constraint pk_employee1 primary key(empid);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and constraint pk_employee1 primary key(empid)' at line 1
+mysql> alter table employee1 add constraint pk_employee1 primary key(empid);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee1;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| empid   | int          | NO   | PRI | NULL    |       |
+| empname | varchar(100) | YES  |     | NULL    |       |
+| email   | varchar(50)  | YES  |     | NULL    |       |
+| age     | int          | YES  |     | NULL    |       |
+| city    | varchar(50)  | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee1 and constraint uq_email unique(email);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and constraint uq_email unique(email)' at line 1
+mysql> alter table employee1 add constraint uq_email unique(email);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee1;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| empid   | int          | NO   | PRI | NULL    |       |
+| empname | varchar(100) | YES  |     | NULL    |       |
+| email   | varchar(50)  | YES  | UNI | NULL    |       |
+| age     | int          | YES  |     | NULL    |       |
+| city    | varchar(50)  | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee1 add constraint chk_age check(age >=18);
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee1;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| empid   | int          | NO   | PRI | NULL    |       |
+| empname | varchar(100) | YES  |     | NULL    |       |
+| email   | varchar(50)  | YES  | UNI | NULL    |       |
+| age     | int          | YES  |     | NULL    |       |
+| city    | varchar(50)  | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into employee1 values(101, "vidhi", "vidhi@gamil.com", 21, "Ahmedabad);"
+    -> insert into employee1 values(101, "vidhi", "vidhi@gamil.com", 21, "Ahmedabad");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'insert into employee1 values(101, "vidhi", "vidhi@gamil.com", 21, "Ahmedabad")' at line 2
+mysql> ^C
+mysql> insert into employee1 values(101, "vidhi", "vidhi@gamil.com", 21, "Ahmedabad");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> describe employee1;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| empid   | int          | NO   | PRI | NULL    |       |
+| empname | varchar(100) | YES  |     | NULL    |       |
+| email   | varchar(50)  | YES  | UNI | NULL    |       |
+| age     | int          | YES  |     | NULL    |       |
+| city    | varchar(50)  | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee1;
++-------+---------+-----------------+------+-----------+
+| empid | empname | email           | age  | city      |
++-------+---------+-----------------+------+-----------+
+|   101 | vidhi   | vidhi@gamil.com |   21 | Ahmedabad |
++-------+---------+-----------------+------+-----------+
+1 row in set (0.00 sec)
+
+mysql> alter table employees alter city set default 'mumbai';
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee1;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| empid   | int          | NO   | PRI | NULL    |       |
+| empname | varchar(100) | YES  |     | NULL    |       |
+| email   | varchar(50)  | YES  | UNI | NULL    |       |
+| age     | int          | YES  |     | NULL    |       |
+| city    | varchar(50)  | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee1;
++-------+---------+-----------------+------+-----------+
+| empid | empname | email           | age  | city      |
++-------+---------+-----------------+------+-----------+
+|   101 | vidhi   | vidhi@gamil.com |   21 | Ahmedabad |
++-------+---------+-----------------+------+-----------+
+1 row in set (0.00 sec)
+
+mysql> describe employee1;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| empid   | int          | NO   | PRI | NULL    |       |
+| empname | varchar(100) | YES  |     | NULL    |       |
+| email   | varchar(50)  | YES  | UNI | NULL    |       |
+| age     | int          | YES  |     | NULL    |       |
+| city    | varchar(50)  | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee1 alter city set default 'mumbai';
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee1;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| empid   | int          | NO   | PRI | NULL    |       |
+| empname | varchar(100) | YES  |     | NULL    |       |
+| email   | varchar(50)  | YES  | UNI | NULL    |       |
+| age     | int          | YES  |     | NULL    |       |
+| city    | varchar(50)  | YES  |     | mumbai  |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into employee1(empid, empname, email, age) values(103, "rudra", "rudra@gmail.com", 32);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from employee1;
++-------+---------+-----------------+------+-----------+
+| empid | empname | email           | age  | city      |
++-------+---------+-----------------+------+-----------+
+|   101 | vidhi   | vidhi@gamil.com |   21 | Ahmedabad |
+|   103 | rudra   | rudra@gmail.com |   32 | mumbai    |
++-------+---------+-----------------+------+-----------+
+2 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+===> Date : 20-05-2026
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 43
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++-------------------
+8 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| customers     |
+| customres     |
+| employee      |
+| employee1     |
+| employees     |
+| stu           |
+| student       |
++---------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from employee1;
++-------+---------+-----------------+------+-----------+
+| empid | empname | email           | age  | city      |
++-------+---------+-----------------+------+-----------+
+|   101 | vidhi   | vidhi@gamil.com |   21 | Ahmedabad |
+|   103 | rudra   | rudra@gmail.com |   32 | mumbai    |
++-------+---------+-----------------+------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> create table students(students_id int primary key auto_increment, students_name varchar(50));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| customers     |
+| customres     |
+| employee      |
+| employee1     |
+| employees     |
+| stu           |
+| student       |
+| students      |
++---------------+
+8 rows in set (0.00 sec)
+
+mysql> create table subjects(subject_id int primary key auto_increment, subject_name varchar(100));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| customers     |
+| customres     |
+| employee      |
+| employee1     |
+| employees     |
+| stu           |
+| student       |
+| students      |
+| subjects      |
++---------------+
+9 rows in set (0.00 sec)
+
+mysql> create table marks(marks_id int primary key auto_increment, student_id int, subject_id int, score int, test_data date, foreign key(student_id) references students(students_id), foreign key(subject_id) references subjects(subject_id));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> describe marks;
++------------+------+------+-----+---------+----------------+
+| Field      | Type | Null | Key | Default | Extra          |
++------------+------+------+-----+---------+----------------+
+| marks_id   | int  | NO   | PRI | NULL    | auto_increment |
+| student_id | int  | YES  | MUL | NULL    |                |
+| subject_id | int  | YES  | MUL | NULL    |                |
+| score      | int  | YES  |     | NULL    |                |
+| test_data  | date | YES  |     | NULL    |                |
++------------+------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table marks drop column student_id;
+ERROR 1828 (HY000): Cannot drop column 'student_id': needed in a foreign key constraint 'marks_ibfk_1'
+mysql> alter table marks drop column student_id, drop foreign key 'marks_ibfk_1';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''marks_ibfk_1'' at line 1
+mysql> alter table marks drop column student_id, drop foreign key marks_ibfk_1;
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> alter table marks drop foreign key marks_ibfk_1;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> alter table marks drop column student_id;
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> alter table marks drop column subject_id;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> describe marks;
+
+
+
+
+
+
+
+===> Date : 21-05-2026
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 62
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| joins              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| marks         |
+| students      |
+| subjects      |
++---------------+
+3 rows in set (0.00 sec)
+
+mysql> describe students;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| student_id   | int          | NO   | PRI | NULL    | auto_increment |
+| student_name | varchar(100) | YES  |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from students;
++------------+--------------+
+| student_id | student_name |
++------------+--------------+
+|          1 | Aarav sharma |
+|          2 | Ishani verma |
+|          3 | Vihaan gupta |
+|          4 | Ananya lyer  |
+|          5 | Kabir singh  |
+|          6 | mrya kapoor  |
++------------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> describe subjects;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| subject_id   | int          | NO   | PRI | NULL    | auto_increment |
+| subject_name | varchar(100) | YES  |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from subjects;
++------------+--------------+
+| subject_id | subject_name |
++------------+--------------+
+|          1 | mathematics  |
+|          2 | sceience     |
+|          3 | English      |
+|          4 | History      |
++------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> describe marks;
++------------+------+------+-----+---------+----------------+
+| Field      | Type | Null | Key | Default | Extra          |
++------------+------+------+-----+---------+----------------+
+| mark_id    | int  | NO   | PRI | NULL    | auto_increment |
+| student_id | int  | YES  | MUL | NULL    |                |
+| subject_id | int  | YES  | MUL | NULL    |                |
+| score      | int  | YES  |     | NULL    |                |
+| test_date  | date | YES  |     | NULL    |                |
++------------+------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from marks;
++---------+------------+------------+-------+------------+
+| mark_id | student_id | subject_id | score | test_date  |
++---------+------------+------------+-------+------------+
+|       1 |          1 |          1 |    85 | 2026-03-01 |
+|       2 |          1 |          2 |    78 | 2026-03-01 |
+|       3 |          1 |          3 |    92 | 2026-03-01 |
+|       4 |          1 |          4 |    70 | 2026-03-01 |
+|       5 |          2 |          1 |    95 | 2026-03-01 |
+|       6 |          2 |          2 |    88 | 2026-03-01 |
+|       7 |          2 |          3 |    80 | 2026-03-01 |
+|       8 |          2 |          4 |    85 | 2026-03-01 |
+|       9 |          3 |          1 |    45 | 2026-03-01 |
+|      10 |          3 |          2 |    50 | 2026-03-01 |
+|      11 |          3 |          3 |    55 | 2026-03-01 |
+|      12 |          3 |          4 |    40 | 2026-03-01 |
+|      13 |          4 |          1 |    88 | 2026-03-01 |
+|      14 |          4 |          2 |    92 | 2026-03-01 |
+|      15 |          4 |          3 |    85 | 2026-03-01 |
+|      16 |          4 |          4 |    90 | 2026-03-01 |
+|      17 |          5 |          1 |    60 | 2026-03-01 |
+|      18 |          5 |          2 |    65 | 2026-03-01 |
+|      19 |          5 |          3 |    70 | 2026-03-01 |
+|      20 |          5 |          4 |    62 | 2026-03-01 |
+|      21 |          1 |          1 |    92 | 2026-04-01 |
+|      22 |          5 |          1 |    85 | 2026-04-01 |
++---------+------------+------------+-------+------------+
+22 rows in set (0.00 sec)
+
+mysql> select subject_id, AVG(score) as 'Average marks' from marks
+    -> group by sunject_id;
+ERROR 1054 (42S22): Unknown column 'sunject_id' in 'group statement'
+mysql> select subject_id, AVG(score) as 'Average marks' from marks
+    -> group by subject_id;
++------------+---------------+
+| subject_id | Average marks |
++------------+---------------+
+|          1 |       78.5714 |
+|          2 |       74.6000 |
+|          3 |       76.4000 |
+|          4 |       69.4000 |
++------------+---------------+
+4 rows in set (0.00 sec)
+
+
+
+
+
+
+
+===> Date : 22-05-2026
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 61
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> create database joins;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use joins;
+Database changed
+mysql> create table departments(dept_id int primary key, dept_name varchar(50));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table cities(city_id int primary key, city_name varchar(50));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table employees(emp_id int primary key, emp_name varchar(100), dept_id int, city_id int, foreign key(dept_id) references departments(dept_id), foreign key(city_id) references cities(city_id));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> describe employees;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| emp_id   | int          | NO   | PRI | NULL    |       |
+| emp_name | varchar(100) | YES  |     | NULL    |       |
+| dept_id  | int          | YES  | MUL | NULL    |       |
+| city_id  | int          | YES  | MUL | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into departments(dept_id, dept_name) values
+    -> (1, "Engineering"),
+    -> (2, "HR"),
+    -> (3, "Finance"),
+    -> (4, "Marketing");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into cities(city_id, city_name) values
+    -> (101, "Mumbai"),
+    -> (102, "Delhi"),
+    -> (103, "Banglore"),
+    -> (104, "Pune");
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into employees(emp_id, emp_name, dept_id, city_id) values
+    -> (1, "Arav", 1, 101),
+    -> (2, "Priya", 2, 102),
+    -> (3, "Rohan", 1, 103),
+    -> (4, "Ananya", 3, 101),
+    -> (5, "Vikram", NULL, 104),
+    -> (6, "Neha", 2, 101),
+    -> (7, "Aditya", 1, NULL),
+    -> (8, "Kavya", 4, 103),
+    -> (9, "Siddhart", 3, 102),
+    -> (10, "Pooja", NULL, NULL);
+Query OK, 10 rows affected (0.02 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from cities;
++---------+-----------+
+| city_id | city_name |
++---------+-----------+
+|     101 | Mumbai    |
+|     102 | Delhi     |
+|     103 | Banglore  |
+|     104 | Pune      |
++---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from departments;
++---------+-------------+
+| dept_id | dept_name   |
++---------+-------------+
+|       1 | Engineering |
+|       2 | HR          |
+|       3 | Finance     |
+|       4 | Marketing   |
++---------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employees;
++--------+----------+---------+---------+
+| emp_id | emp_name | dept_id | city_id |
++--------+----------+---------+---------+
+|      1 | Arav     |       1 |     101 |
+|      2 | Priya    |       2 |     102 |
+|      3 | Rohan    |       1 |     103 |
+|      4 | Ananya   |       3 |     101 |
+|      5 | Vikram   |    NULL |     104 |
+|      6 | Neha     |       2 |     101 |
+|      7 | Aditya   |       1 |    NULL |
+|      8 | Kavya    |       4 |     103 |
+|      9 | Siddhart |       3 |     102 |
+|     10 | Pooja    |    NULL |    NULL |
++--------+----------+---------+---------+
+10 rows in set (0.00 sec)
+
+mysql> select emp.emp_name, dept.dept_name from employees emp inner join departments dept
+    -> select emp.emp_name, dept.dept_name from employees emp inner join departments depton emp.dept_id = dept.dept_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select emp.emp_name, dept.dept_name from employees emp inner join departments de' at line 2
+mysql> select emp.emp_name, dept.dept_name from employees emp inner join departments dept on emp.dept_id = dept.dept_id;
++----------+-------------+
+| emp_name | dept_name   |
++----------+-------------+
+| Arav     | Engineering |
+| Rohan    | Engineering |
+| Aditya   | Engineering |
+| Priya    | HR          |
+| Neha     | HR          |
+| Ananya   | Finance     |
+| Siddhart | Finance     |
+| Kavya    | Marketing   |
++----------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> select emp.emp_name, dept.dept_name from employees emp left join departments dept on emp.dept_id = dept.dept_id;
++----------+-------------+
+| emp_name | dept_name   |
++----------+-------------+
+| Arav     | Engineering |
+| Priya    | HR          |
+| Rohan    | Engineering |
+| Ananya   | Finance     |
+| Vikram   | NULL        |
+| Neha     | HR          |
+| Aditya   | Engineering |
+| Kavya    | Marketing   |
+| Siddhart | Finance     |
+| Pooja    | NULL        |
++----------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> select emp.emp_name, dept.dept_name from employees emp right join departments dept on emp.dept_id = dept.dept_id;
++----------+-------------+
+| emp_name | dept_name   |
++----------+-------------+
+| Arav     | Engineering |
+| Rohan    | Engineering |
+| Aditya   | Engineering |
+| Priya    | HR          |
+| Neha     | HR          |
+| Ananya   | Finance     |
+| Siddhart | Finance     |
+| Kavya    | Marketing   |
++----------+-------------+
+8 rows in set (0.00 sec)
+
+
+
+
+
+===> Date : 23-05-2026
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 78
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| joins              |
+| joint              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| marks         |
+| students      |
+| subjects      |
++---------------+
+3 rows in set (0.00 sec)
+
+mysql> create table employees(empid int primary key, empname varchar(50), age int, salary float);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| employees     |
+| marks         |
+| students      |
+| subjects      |
++---------------+
+4 rows in set (0.00 sec)
+
+mysql> rename table employees to employee;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| employee      |
+| marks         |
+| students      |
+| subjects      |
++---------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee add column doj datetime default current_timestamp;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee;
++---------+-------------+------+-----+-------------------+-------------------+
+| Field   | Type        | Null | Key | Default           | Extra             |
++---------+-------------+------+-----+-------------------+-------------------+
+| empid   | int         | NO   | PRI | NULL              |                   |
+| empname | varchar(50) | YES  |     | NULL              |                   |
+| age     | int         | YES  |     | NULL              |                   |
+| salary  | float       | YES  |     | NULL              |                   |
+| doj     | datetime    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++---------+-------------+------+-----+-------------------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee modify column empid into auto_increment;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'into auto_increment' at line 1
+mysql> alter table employee modify column empid int auto_increment;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into employee(empname, age, salary) values
+    -> ("vidhi", 20, 50000);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from employee;
++-------+---------+------+--------+---------------------+
+| empid | empname | age  | salary | doj                 |
++-------+---------+------+--------+---------------------+
+|     1 | vidhi   |   20 |  50000 | 2026-05-22 23:03:35 |
++-------+---------+------+--------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> alter table employee add column dob date, add column mobile int, add column email varchar(50) unique;
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee;
++---------+-------------+------+-----+-------------------+-------------------+
+| Field   | Type        | Null | Key | Default           | Extra             |
++---------+-------------+------+-----+-------------------+-------------------+
+| empid   | int         | NO   | PRI | NULL              | auto_increment    |
+| empname | varchar(50) | YES  |     | NULL              |                   |
+| age     | int         | YES  |     | NULL              |                   |
+| salary  | float       | YES  |     | NULL              |                   |
+| doj     | datetime    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| dob     | date        | YES  |     | NULL              |                   |
+| mobile  | int         | YES  |     | NULL              |                   |
+| email   | varchar(50) | YES  | UNI | NULL              |                   |
++---------+-------------+------+-----+-------------------+-------------------+
+8 rows in set (0.00 sec)
+
+mysql> alter table employee drop column doj, drop column dob, drop column mobile;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employee;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| empid   | int         | NO   | PRI | NULL    | auto_increment |
+| empname | varchar(50) | YES  |     | NULL    |                |
+| age     | int         | YES  |     | NULL    |                |
+| salary  | float       | YES  |     | NULL    |                |
+| email   | varchar(50) | YES  | UNI | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 79
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| joins              |
+| joint              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| employee      |
+| marks         |
+| students      |
+| subjects      |
++---------------+
+4 rows in set (0.00 sec)
+
+mysql> drop table employee;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table departments(deptid int primary key, deptname varchar(50) not null, location varchar(50), budgetinlaks int);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table employees
+    -> (empid int primary key, empname varchar(50) not null, city varchar(50),deptid int);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> describe departmetns;
+ERROR 1146 (42S02): Table 'mdb.departmetns' doesn't exist
+mysql> describe departments;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| deptid       | int         | NO   | PRI | NULL    |       |
+| deptname     | varchar(50) | NO   |     | NULL    |       |
+| location     | varchar(50) | YES  |     | NULL    |       |
+| budgetinlaks | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> describe employees;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| empid   | int         | NO   | PRI | NULL    |       |
+| empname | varchar(50) | NO   |     | NULL    |       |
+| city    | varchar(50) | YES  |     | NULL    |       |
+| deptid  | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into departments(depid, deptname, location , budgetinlaks) values
+    -> (10, 'engineering', 'bengaluru', 50),
+    -> (20, 'marketing', 'mumbai', 25),
+    -> (30, 'human resources', 'delhi', 15),
+    -> (40, 'data science', 'hyderabad', 40);
+ERROR 1054 (42S22): Unknown column 'depid' in 'field list'
+mysql> insert into departments(deptid, deptname, location , budgetinlaks) values
+    -> (10, 'engineering', 'bengaluru', 50),
+    -> (20, 'marketing', 'mumbai', 25),
+    -> (30, 'human resources', 'delhi', 15),
+    -> (40, 'data science', 'hyderabad', 40);
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into employees(empid, empname, city, deptid) values
+    -> (101, 'Aarav sharma', 'delhi', 10),
+    -> (102, 'priya patel', 'mumbai', 20),
+    -> (103, 'amit mishra', 'bengulura', 10),
+    -> (104, 'anaya iyer', 'chennai', 30),
+    -> (105, 'rohan das', 'kolkata', null);
+Query OK, 5 rows affected (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from departments;
++--------+-----------------+-----------+--------------+
+| deptid | deptname        | location  | budgetinlaks |
++--------+-----------------+-----------+--------------+
+|     10 | engineering     | bengaluru |           50 |
+|     20 | marketing       | mumbai    |           25 |
+|     30 | human resources | delhi     |           15 |
+|     40 | data science    | hyderabad |           40 |
++--------+-----------------+-----------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employees;
++-------+--------------+-----------+--------+
+| empid | empname      | city      | deptid |
++-------+--------------+-----------+--------+
+|   101 | Aarav sharma | delhi     |     10 |
+|   102 | priya patel  | mumbai    |     20 |
+|   103 | amit mishra  | bengulura |     10 |
+|   104 | anaya iyer   | chennai   |     30 |
+|   105 | rohan das    | kolkata   |   NULL |
++-------+--------------+-----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> 
+
+
+
+
+
+
+===> Date : 25-05-2026
+
+
+
+
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 88
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| joins              |
+| joint              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| departments   |
+| employee      |
+| employees     |
+| marks         |
+| students      |
+| subjects      |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> use mydb;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_mydb |
++----------------+
+| courses        |
+| instructors    |
+| learners       |
++----------------+
+3 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| departments   |
+| employee      |
+| employees     |
+| marks         |
+| students      |
+| subjects      |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> create table employees1(emp_id int primary key, emp_name varchar(50), department varchar(56), salary int, manager_id int, city varchar(50));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> describe employees1;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int         | NO   | PRI | NULL    |       |
+| emp_name   | varchar(50) | YES  |     | NULL    |       |
+| department | varchar(56) | YES  |     | NULL    |       |
+| salary     | int         | YES  |     | NULL    |       |
+| manager_id | int         | YES  |     | NULL    |       |
+| city       | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into employees1(emp_id, emp_name, department, salary, manager_id, city) values
+    -> (101, "Arvind sharma", "Executive", 250000, NULL, "Mumbai");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into employees1(emp_id, emp_name, department, salary, manager_id, city) values
+    -> (102, "Priya patel", "IT", 120000, 101, "Banglore"),
+    -> (103, "Rajesh kumar", "IT", 150000, 101, "Banglore"),
+    -> (104, "Sunita rao", "HR", 80000, 101, "Delhi"),
+    -> (105, "Amit mishra", "IT", 90000, 102, "Mumbai"),
+    -> (106, "Deepika padukone", "IT", 60000, 102, "Banglore"),
+    -> (107, "Vijay mallya", "Finance", 99000, 101, "Delhi"),
+    -> (108, "Ananya iyer", "HR", 50000, 104, "Delhi"),
+    -> (109, "Rahul dravid", "Finance", 95000, 107, "Mumbai"),
+    -> (110, "Sanjay dutt", "IT", 45000, 103, "Pune");
+Query OK, 9 rows affected (0.03 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> select * from employees1;
++--------+------------------+------------+--------+------------+----------+
+| emp_id | emp_name         | department | salary | manager_id | city     |
++--------+------------------+------------+--------+------------+----------+
+|    101 | Arvind sharma    | Executive  | 250000 |       NULL | Mumbai   |
+|    102 | Priya patel      | IT         | 120000 |        101 | Banglore |
+|    103 | Rajesh kumar     | IT         | 150000 |        101 | Banglore |
+|    104 | Sunita rao       | HR         |  80000 |        101 | Delhi    |
+|    105 | Amit mishra      | IT         |  90000 |        102 | Mumbai   |
+|    106 | Deepika padukone | IT         |  60000 |        102 | Banglore |
+|    107 | Vijay mallya     | Finance    |  99000 |        101 | Delhi    |
+|    108 | Ananya iyer      | HR         |  50000 |        104 | Delhi    |
+|    109 | Rahul dravid     | Finance    |  95000 |        107 | Mumbai   |
+|    110 | Sanjay dutt      | IT         |  45000 |        103 | Pune     |
++--------+------------------+------------+--------+------------+----------+
+10 rows in set (0.00 sec)
+
+mysql> select m.emp_name as 'Manager Name', count(e.emp_id) as team_size from employees1 e inner join employees1 m on e.manager_id = m.emp_id group by m.emp_name having team_size > 2;
++---------------+-----------+
+| Manager Name  | team_size |
++---------------+-----------+
+| Arvind sharma |         4 |
++---------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select m.emp_name as 'Manager Name', count(e.emp_id) as team_size from employees1 e inner join employees1 m on e.manager_id = m.emp_id group by m.emp_name having team_size >= 2;
++---------------+-----------+
+| Manager Name  | team_size |
++---------------+-----------+
+| Arvind sharma |         4 |
+| Priya patel   |         2 |
++---------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select m.emp_name as 'Manager Name', count(e.emp_id) as team_size from employees1 e inner join employees1 m on e.manager_id = m.emp_id group by m.emp_name having team_size >= 0;
++---------------+-----------+
+| Manager Name  | team_size |
++---------------+-----------+
+| Arvind sharma |         4 |
+| Priya patel   |         2 |
+| Sunita rao    |         1 |
+| Vijay mallya  |         1 |
+| Rajesh kumar  |         1 |
++---------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select m.emp_name as 'Manager Name', count(e.emp_id) as team_size from employees1 e inner join employees1 m on e.manager_id = m.emp_id group by m.emp_name having team_size > 1;
++---------------+-----------+
+| Manager Name  | team_size |
++---------------+-----------+
+| Arvind sharma |         4 |
+| Priya patel   |         2 |
++---------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+===> Date : 26-05-2026
+
+
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 95
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| joins              |
+| joint              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| departments   |
+| employee      |
+| employees     |
+| employees1    |
+| marks         |
+| students      |
+| subjects      |
++---------------+
+7 rows in set (0.01 sec)
+
+mysql> select * from employees1;
++--------+------------------+------------+--------+------------+----------+
+| emp_id | emp_name         | department | salary | manager_id | city     |
++--------+------------------+------------+--------+------------+----------+
+|    101 | Arvind sharma    | Executive  | 250000 |       NULL | Mumbai   |
+|    102 | Priya patel      | IT         | 120000 |        101 | Banglore |
+|    103 | Rajesh kumar     | IT         | 150000 |        101 | Banglore |
+|    104 | Sunita rao       | HR         |  80000 |        101 | Delhi    |
+|    105 | Amit mishra      | IT         |  90000 |        102 | Mumbai   |
+|    106 | Deepika padukone | IT         |  60000 |        102 | Banglore |
+|    107 | Vijay mallya     | Finance    |  99000 |        101 | Delhi    |
+|    108 | Ananya iyer      | HR         |  50000 |        104 | Delhi    |
+|    109 | Rahul dravid     | Finance    |  95000 |        107 | Mumbai   |
+|    110 | Sanjay dutt      | IT         |  45000 |        103 | Pune     |
++--------+------------------+------------+--------+------------+----------+
+10 rows in set (0.00 sec)
+
+mysql> select m.emp_name as 'Manager Name', sum(e.salary) as team_payroll from employees1 e inner join employees1 m on e.manager_id = m.emp_id group by m.emp_name having team_payroll > 200000;
++---------------+--------------+
+| Manager Name  | team_payroll |
++---------------+--------------+
+| Arvind sharma |       449000 |
++---------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select m.emp_name as 'Manager Name', min(e.salary) as lowest_salary, count(e.emp_id) as total_members from employees1 e inner join employees1 m on e.manager_id = m.emp_id group by m.emp_name having count(e.emp_id) = 4;
++---------------+---------------+---------------+
+| Manager Name  | lowest_salary | total_members |
++---------------+---------------+---------------+
+| Arvind sharma |         80000 |             4 |
++---------------+---------------+---------------+
+1 row in set (0.02 sec)
+
+mysql> select m.emp_name as 'Manager Name', max(e.salary) as lowest_salary, count(e.emp_id) as total_members from employees1 e inner join employees1 m on e.manager_id = m.emp_id group by m.emp_name having count(e.emp_id) = 4;
++---------------+---------------+---------------+
+| Manager Name  | lowest_salary | total_members |
++---------------+---------------+---------------+
+| Arvind sharma |        150000 |             4 |
++---------------+---------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select m.emp_name as 'Manager Name', max(e.salary) as max_salary, count(e.emp_id) as total_members from employees1 e inner join employees1 m on e.manager_id = m.emp_id group by m.emp_name having count(e.emp_id) = 4;
++---------------+------------+---------------+
+| Manager Name  | max_salary | total_members |
++---------------+------------+---------------+
+| Arvind sharma |     150000 |             4 |
++---------------+------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select m.emp_name as 'Manager Name', Avg(e.salary) as averange_salary, count(e.emp_id) as total_members from employees1 e inner join employees1 m on e.manager_id = m.emp_id group by m.emp_name having count(e.emp_id) = 4;
++---------------+-----------------+---------------+
+| Manager Name  | averange_salary | total_members |
++---------------+-----------------+---------------+
+| Arvind sharma |     112250.0000 |             4 |
++---------------+-----------------+---------------+
+1 row in set (0.02 sec)
+
+
+
+
+
+
+===> Date : 27-05-2026
+
+
+
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 96
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| joins              |
+| joint              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| departments   |
+| employee      |
+| employees     |
+| employees1    |
+| marks         |
+| students      |
+| subjects      |
++---------------+
+7 rows in set (0.00 sec)
+
+mysql> create table patients(patientid int primary key auto_increment, name varchar(35) default '', dateofbirth date not null, lastvisitDate date not null, nextvisitDate date);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> describe patients;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| patientid     | int         | NO   | PRI | NULL    | auto_increment |
+| name          | varchar(35) | YES  |     |         |                |
+| dateofbirth   | date        | NO   |     | NULL    |                |
+| lastvisitDate | date        | NO   |     | NULL    |                |
+| nextvisitDate | date        | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into patients values(1001, "Rudra", '1991-12-31', '2012-01-20', NULL);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from patients;
++-----------+-------+-------------+---------------+---------------+
+| patientid | name  | dateofbirth | lastvisitDate | nextvisitDate |
++-----------+-------+-------------+---------------+---------------+
+|      1001 | Rudra | 1991-12-31  | 2012-01-20    | NULL          |
++-----------+-------+-------------+---------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> insert into patients values(NULL, "Vidhi", '2011-10-29', '2012-09-20', NULL);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from patients;
++-----------+-------+-------------+---------------+---------------+
+| patientid | name  | dateofbirth | lastvisitDate | nextvisitDate |
++-----------+-------+-------------+---------------+---------------+
+|      1001 | Rudra | 1991-12-31  | 2012-01-20    | NULL          |
+|      1002 | Vidhi | 2011-10-29  | 2012-09-20    | NULL          |
++-----------+-------+-------------+---------------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into patients values(NULL, "Krupesh", '2011-101-30', curdate(), NULL);
+ERROR 1292 (22007): Incorrect date value: '2011-101-30' for column 'dateofbirth' at row 1
+mysql> insert into patients values(NULL, "Krupesh", '2011-01-30', curdate(), NULL);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from patients;
++-----------+---------+-------------+---------------+---------------+
+| patientid | name    | dateofbirth | lastvisitDate | nextvisitDate |
++-----------+---------+-------------+---------------+---------------+
+|      1001 | Rudra   | 1991-12-31  | 2012-01-20    | NULL          |
+|      1002 | Vidhi   | 2011-10-29  | 2012-09-20    | NULL          |
+|      1003 | Krupesh | 2011-01-30  | 2026-05-26    | NULL          |
++-----------+---------+-------------+---------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> select date_formate('2023-05-23', '%m/%d/%Y') as 'Date';
+ERROR 1305 (42000): FUNCTION mdb.date_formate does not exist
+mysql> select date_format('2023-05-23', '%m/%d/%Y') as 'Date';
++------------+
+| Date       |
++------------+
+| 05/23/2023 |
++------------+
+1 row in set (0.02 sec)
+
+mysql> select date_format('2026-05-23','%c/%e/%y');
++--------------------------------------+
+| date_format('2026-05-23','%c/%e/%y') |
++--------------------------------------+
+| 5/23/26                              |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format('2026-05-27', '%d/%m/%y') as 'Date';
++----------+
+| Date     |
++----------+
+| 27/05/26 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select date_format('2026-05-27', '%Y-%m-%d') as 'Date';
++------------+
+| Date       |
++------------+
+| 2026-05-27 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format('2026-05-27', '%Y.%m.%d') as 'Date';
++------------+
+| Date       |
++------------+
+| 2026.05.27 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format('2026-05-27', '%Y - %m') as 'Date';
++-----------+
+| Date      |
++-----------+
+| 2026 - 05 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select date_format('2026-05-27', '%Y - %M') as 'Date';
++------------+
+| Date       |
++------------+
+| 2026 - May |
++------------+
+1 row in set (0.02 sec)
+
+mysql> select date_format('2026-05-27', '%M - %Y') as 'Date';
++------------+
+| Date       |
++------------+
+| May - 2026 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format('2026-05-27', '%d - %m - %y') as 'Date';
++--------------+
+| Date         |
++--------------+
+| 27 - 05 - 26 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format('2026-05-27', '%d - %M - %y') as 'Date';
++---------------+
+| Date          |
++---------------+
+| 27 - May - 26 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
+
+
+===> Date : 28-05-2026
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 102
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| joins              |
+| joint              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> select * from patients;
++-----------+---------+-------------+---------------+---------------+
+| patientid | name    | dateofbirth | lastvisitDate | nextvisitDate |
++-----------+---------+-------------+---------------+---------------+
+|      1001 | Rudra   | 1991-12-31  | 2012-01-20    | NULL          |
+|      1002 | Vidhi   | 2011-10-29  | 2012-09-20    | NULL          |
+|      1003 | Krupesh | 2011-01-30  | 2026-05-26    | NULL          |
++-----------+---------+-------------+---------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create procedure getData()
+    -> begin
+    -> select * from patients;
+    -> end
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql> call getData();
++-----------+---------+-------------+---------------+---------------+
+| patientid | name    | dateofbirth | lastvisitDate | nextvisitDate |
++-----------+---------+-------------+---------------+---------------+
+|      1001 | Rudra   | 1991-12-31  | 2012-01-20    | NULL          |
+|      1002 | Vidhi   | 2011-10-29  | 2012-09-20    | NULL          |
+|      1003 | Krupesh | 2011-01-30  | 2026-05-26    | NULL          |
++-----------+---------+-------------+---------------+---------------+
+3 rows in set (0.02 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+===> Date : 29-05-2026
+
+
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 106
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| joins              |
+| joint              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| departments   |
+| employee      |
+| marks         |
+| patients      |
+| students      |
+| subjects      |
++---------------+
+6 rows in set (0.00 sec)
+
+mysql> drop table employee;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table employees(id int, name varchar(50), age int, salary int, department varchar(50));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> describe employee;
+ERROR 1146 (42S02): Table 'mdb.employee' doesn't exist
+mysql> describe employees;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int         | YES  |     | NULL    |       |
+| name       | varchar(50) | YES  |     | NULL    |       |
+| age        | int         | YES  |     | NULL    |       |
+| salary     | int         | YES  |     | NULL    |       |
+| department | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> load data infile "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/mydata.csv"
+    -> into table employees
+    -> fields terminated by ","
+    -> enclosed by '"'
+    -> lines terminated by "\r\n"
+    -> ignore 1 rows;
+Query OK, 9 rows affected (0.04 sec)
+Records: 9  Deleted: 0  Skipped: 0  Warnings: 0
+
+mysql> select * from employees;
++------+---------+------+--------+------------+
+| id   | name    | age  | salary | department |
++------+---------+------+--------+------------+
+|  101 | ram     |   21 |  45000 | IT         |
+|  102 | raj     |   22 |  28000 | HR         |
+|  103 | rakesh  |   23 |  62000 | Finance    |
+|  104 | lokesh  |   21 |  75000 | IT         |
+|  105 | divya   |   24 |  12000 | DA         |
+|  106 | asvini  |   21 |  30000 | DS         |
+|  107 | vidhi   |   25 |  80000 | ML         |
+|  108 | nandini |   26 |  74000 | AI         |
+|  109 | rudra   |   36 |  50000 | Python     |
++------+---------+------+--------+------------+
+9 rows in set (0.00 sec)
+
+mysql> 
+
+
+
+
+
+
+
+
+===> Date : 03-06-2026
+
+
+
+
+
+
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 138
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select date_add('2026-06-03', interval 5 day);
++----------------------------------------+
+| date_add('2026-06-03', interval 5 day) |
++----------------------------------------+
+| 2026-06-08                             |
++----------------------------------------+
+1 row in set (0.02 sec)
+
+mysql> select date_add('2026-06-03', interval 20 day);
++-----------------------------------------+
+| date_add('2026-06-03', interval 20 day) |
++-----------------------------------------+
+| 2026-06-23                              |
++-----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add('2026-06-03', interval 10 day);
++-----------------------------------------+
+| date_add('2026-06-03', interval 10 day) |
++-----------------------------------------+
+| 2026-06-13                              |
++-----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add('2026-06-03', interval 15 day);
++-----------------------------------------+
+| date_add('2026-06-03', interval 15 day) |
++-----------------------------------------+
+| 2026-06-18                              |
++-----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add('2026-06-03', interval 1 month);
++------------------------------------------+
+| date_add('2026-06-03', interval 1 month) |
++------------------------------------------+
+| 2026-07-03                               |
++------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add('2026-06-03', interval 1 year);
++-----------------------------------------+
+| date_add('2026-06-03', interval 1 year) |
++-----------------------------------------+
+| 2027-06-03                              |
++-----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub('2026-06-03', interval 1 year);
++-----------------------------------------+
+| date_sub('2026-06-03', interval 1 year) |
++-----------------------------------------+
+| 2025-06-03                              |
++-----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add('2026-06-03', interval 1.5 month);
++--------------------------------------------+
+| date_add('2026-06-03', interval 1.5 month) |
++--------------------------------------------+
+| 2026-08-03                                 |
++--------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub('2026-06-03', interval 1.5 month);
++--------------------------------------------+
+| date_sub('2026-06-03', interval 1.5 month) |
++--------------------------------------------+
+| 2026-04-03                                 |
++--------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff(year, '2026-08-06', curdate()) as 'years Age';
++-----------+
+| years Age |
++-----------+
+|         0 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff(year, '2004-08-09', curdate()) as 'years Age';
++-----------+
+| years Age |
++-----------+
+|        21 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff(year, '2026-08-09', curdate()) as 'years Age';
++-----------+
+| years Age |
++-----------+
+|         0 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff(year, '1972-12-11', curdate()) as 'years Age';
++-----------+
+| years Age |
++-----------+
+|        53 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff(month, '1972-12-11', curdate()) as 'years Age';
++-----------+
+| years Age |
++-----------+
+|       641 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff(week, '1972-12-11', curdate()) as 'years Age';
++-----------+
+| years Age |
++-----------+
+|      2790 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff(day, '1972-12-11', curdate()) as 'years Age';
++-----------+
+| years Age |
++-----------+
+|     19531 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff(year, '1972-12-11', curdate()) as 'years' Age';
+    '> ^C
+mysql> select timestampdiff(years', '1972-12-11', curdate()) as 'years' Age';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'years', '1972-12-11', curdate()) as 'years' Age'' at line 1
+mysql> select timestampdiff(years', '1972-12-11', curdate()) as `years'Age`;
+    `> ^C
+mysql> select timestampdiff(years`, '1972-12-11', curdate()) as `years'Age`;
+    '> select timestampd^Cf(years`, '1972-12-11', curdate()) as `years'Age`;
+mysql> select timestampdiff(year, '1972-12-11', curdate()) as `years'Age`;
++-----------+
+| years'Age |
++-----------+
+|        53 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff(day, '1972-12-11', curdate()) as `years'Age`;
++-----------+
+| years'Age |
++-----------+
+|     19531 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select timestampdiff(week, '1972-12-11', curdate()) as `years'Age`;
++-----------+
+| years'Age |
++-----------+
+|      2790 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> create database corporatedb;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use corporatedb;
+Database changed
+mysql> create table employees(emp_id int auto_increment primary key, emp_name varchar(54) not null, designation varchar(53), salary decimal(10, 2), last_modified timestamp default current_timestamp on update current_timestamp);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> describe employees;
++---------------+---------------+------+-----+-------------------+-----------------------------------------------+
+| Field         | Type          | Null | Key | Default           | Extra                                         |
++---------------+---------------+------+-----+-------------------+-----------------------------------------------+
+| emp_id        | int           | NO   | PRI | NULL              | auto_increment                                |
+| emp_name      | varchar(54)   | NO   |     | NULL              |                                               |
+| designation   | varchar(53)   | YES  |     | NULL              |                                               |
+| salary        | decimal(10,2) | YES  |     | NULL              |                                               |
+| last_modified | timestamp     | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++---------------+---------------+------+-----+-------------------+-----------------------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employees change salary emp_salary float;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employees;
++---------------+-------------+------+-----+-------------------+-----------------------------------------------+
+| Field         | Type        | Null | Key | Default           | Extra                                         |
++---------------+-------------+------+-----+-------------------+-----------------------------------------------+
+| emp_id        | int         | NO   | PRI | NULL              | auto_increment                                |
+| emp_name      | varchar(54) | NO   |     | NULL              |                                               |
+| designation   | varchar(53) | YES  |     | NULL              |                                               |
+| emp_salary    | float       | YES  |     | NULL              |                                               |
+| last_modified | timestamp   | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++---------------+-------------+------+-----+-------------------+-----------------------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employees change emp_salary salary decimal(8,2);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe employees;
++---------------+--------------+------+-----+-------------------+-----------------------------------------------+
+| Field         | Type         | Null | Key | Default           | Extra                                         |
++---------------+--------------+------+-----+-------------------+-----------------------------------------------+
+| emp_id        | int          | NO   | PRI | NULL              | auto_increment                                |
+| emp_name      | varchar(54)  | NO   |     | NULL              |                                               |
+| designation   | varchar(53)  | YES  |     | NULL              |                                               |
+| salary        | decimal(8,2) | YES  |     | NULL              |                                               |
+| last_modified | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++---------------+--------------+------+-----+-------------------+-----------------------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table audit(log_id int primary key auto_increment, emp_id int, action_performed varchar(15), old_details text, new_details text, action_timestamp timestamp default current_timestamp);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_corporatedb |
++-----------------------+
+| audit                 |
+| employees             |
++-----------------------+
+2 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+===> DAte : 04-06-2026
+
+
+
+
+
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 155
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| corporatedb        |
+| information_schema |
+| joins              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| bonus         |
+| departments   |
+| employees     |
+| marks         |
+| patients      |
+| students      |
+| subjects      |
+| title         |
+| worker        |
+| worker_clone  |
++---------------+
+10 rows in set (0.00 sec)
+
+mysql> drop table employees;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table employees (
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table employees(emp_id int auto_increment primary key, emp_name varchar(100) not null, designation varchar(50), salary decimal(10, 2), last_modified timestamp default current_timestamp on update current_timestamp);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table audit(log_id int auto_increment primary key, emp_id int, acction_performed varchar(20), old_details text, new_details text, action_timestamp timestamp default current_timestamp);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> delimiter //
+mysql> create trigger employees_ai
+    -> after insert on employees
+    -> for each row
+    -> begin
+    -> insert into audit(emp_id, action_performed, old_details, new_details)
+    -> values (
+    -> new.emp_id,
+    -> 'insert',
+    -> null,
+    -> concat('name: ',new.emp_name, 'salary: ',new.salary)
+    -> );
+    -> end
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql> delimiter //
+mysql> create trigger employees_bu
+    -> before update on employees
+    -> for each row
+    -> begin
+    -> insert into audit(emp_id, action_performed, old_details, new_details)
+    -> values (
+    -> old.emp_id,
+    -> 'update'
+    -> concat('old salary: ', old.salary),
+    -> concat('new sakary: ', new.salary)
+    -> );
+    -> end
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'concat('old salary: ', old.salary),
+concat('new sakary: ', new.salary)
+);
+end' at line 9
+mysql> delimiter //
+mysql> create trigger employees_bu
+    -> before update on employees
+    -> for each row
+    -> begin
+    -> insert into audit(emp_id, action_performed, old_details, new_details)
+    -> values (
+    -> old.emp_id,
+    -> 'update'
+    -> concat('old salary: ', old.salary),
+    -> );
+    -> end
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'concat('old salary: ', old.salary),
+);
+end' at line 9
+mysql> delimiter //
+mysql> create trigger employees_bu
+    -> before update on employees
+    -> for each row
+    -> begin
+    -> insert into audit(emp_id, action_performed, old_details, new_details)
+    -> values (
+    -> old.emp_id,
+    -> 'update'
+    -> concat('old salary: ', old.salary),
+    -> concate('new salary: ', new.salary)
+    -> );
+    -> end
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'concat('old salary: ', old.salary),
+concate('new salary: ', new.salary)
+);
+end' at line 9
+mysql> delimiter //
+mysql> create trigger employees_bu
+    -> before update on employees
+    -> for each row
+    -> begin
+    -> insert into audit(emp_id, action_performed, old_details, new_details)
+    -> values (
+    -> old.emp_id,
+    -> 'update'
+    -> concat('old salary: ', old.salary),
+    -> concat('new salary: ', new.salary)
+    -> );
+    -> end
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'concat('old salary: ', old.salary),
+concat('new salary: ', new.salary)
+);
+end' at line 9
+mysql> delimiter //
+mysql> create trigger employees_bu
+    -> before update on employees
+    -> for each row
+    -> begin
+    -> insert into audit(emp_id, action_performed, old_details, new_details)
+    -> values (
+    -> old.emp_id,
+    -> 'update',
+    -> concat('old salary: ', old.salary),
+    -> concat('new salary: ', new.salary)
+    -> );
+    -> end
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql> delimiter //
+mysql> create trigger employees_ad
+    -> after delete on employees
+    -> for each row
+    -> begin
+    -> insert into audit_log(emp_id, action_performed, old_details, new_details)
+    -> values (
+    -> old.emp_id,
+    -> 'delete',
+    -> concat('name: ', old.emp_name, 'designation: ', old.designation),
+    -> null
+    -> );
+    -> end
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql> insert into employees(emp_name, designation, salary) values
+    -> ("Vidhi patel", "Software Engineer", 90000.00),
+    -> ("Rudra", "Data Analyst", 62000.00),
+    -> ("Krupesh", "HR Manager", 55000.00);
+ERROR 1054 (42S22): Unknown column 'action_performed' in 'field list'
+mysql> describe audit_log;
+ERROR 1146 (42S02): Table 'mdb.audit_log' doesn't exist
+mysql> describe audit;
++-------------------+-------------+------+-----+-------------------+-------------------+
+| Field             | Type        | Null | Key | Default           | Extra             |
++-------------------+-------------+------+-----+-------------------+-------------------+
+| log_id            | int         | NO   | PRI | NULL              | auto_increment    |
+| emp_id            | int         | YES  |     | NULL              |                   |
+| acction_performed | varchar(20) | YES  |     | NULL              |                   |
+| old_details       | text        | YES  |     | NULL              |                   |
+| new_details       | text        | YES  |     | NULL              |                   |
+| action_timestamp  | timestamp   | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++-------------------+-------------+------+-----+-------------------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> delimiter ;
+mysql> insert into employees(emp_name, designation, salary) values
+    -> ("Vidhi patel", "Software Engineer", 90000.00),
+    -> ("Rudra", "Data Analyst", 62000.00),
+    -> ("Krupesh", "HR Manager", 55000.00);
+ERROR 1054 (42S22): Unknown column 'action_performed' in 'field list'
+mysql> describe employees;
++---------------+---------------+------+-----+-------------------+-----------------------------------------------+
+| Field         | Type          | Null | Key | Default           | Extra                                         |
++---------------+---------------+------+-----+-------------------+-----------------------------------------------+
+| emp_id        | int           | NO   | PRI | NULL              | auto_increment                                |
+| emp_name      | varchar(100)  | NO   |     | NULL              |                                               |
+| designation   | varchar(50)   | YES  |     | NULL              |                                               |
+| salary        | decimal(10,2) | YES  |     | NULL              |                                               |
+| last_modified | timestamp     | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++---------------+---------------+------+-----+-------------------+-----------------------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> delimite ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimite' at line 1
+mysql> delimiter ;
+mysql> insert into employees(emp_name, designation, salary) values
+    -> ("Vidhi patel", "Software Engineer", 90000.00),
+    -> ("Rudra", "Data Analyst", 62000.00),
+    -> ("Krupesh", "HR Manager", 55000.00);
+ERROR 1054 (42S22): Unknown column 'action_performed' in 'field list'
+mysql> alter table audit rename acction_performed action_performed varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'action_performed varchar(20)' at line 1
+mysql> alter table audit rename acction_performed action_performed;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'action_performed' at line 1
+mysql> alter table audit rename acction_performed varchar(20) action_performed;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar(20) action_performed' at line 1
+mysql> alter table audit change acction_performed action_performed varchar(50);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into employees(emp_name, designation, salary) values
+    -> ("Vidhi patel", "Software Engineer", 90000.00),
+    -> ("Rudra", "Data Analyst", 62000.00),
+    -> ("Krupesh", "HR Manager", 55000.00);
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from employees;
++--------+-------------+-------------------+----------+---------------------+
+| emp_id | emp_name    | designation       | salary   | last_modified       |
++--------+-------------+-------------------+----------+---------------------+
+|     10 | Vidhi patel | Software Engineer | 90000.00 | 2026-06-04 00:22:13 |
+|     11 | Rudra       | Data Analyst      | 62000.00 | 2026-06-04 00:22:13 |
+|     12 | Krupesh     | HR Manager        | 55000.00 | 2026-06-04 00:22:13 |
++--------+-------------+-------------------+----------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> select action_performed, new_details from audit;
++------------------+-----------------------------------+
+| action_performed | new_details                       |
++------------------+-----------------------------------+
+| insert           | name: Vidhi patelsalary: 90000.00 |
+| insert           | name: Rudrasalary: 62000.00       |
+| insert           | name: Krupeshsalary: 55000.00     |
++------------------+-----------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> update employees
+    -> set salary = 70000.00, designation = 'Senior Data Analyst'
+    -> where emp_name = 'Priya patel';
+Query OK, 0 rows affected (0.02 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select action_performed, old_details, new_details from audit where action_performed = 'update';
+Empty set (0.00 sec)
+
+mysql> select action_performed, old_details from audit where action_performed = 'delete';
+Empty set (0.00 sec)
+
+mysql> delimiter //
+mysql> create procedure addemployee(
+    -> in p_emp_name varchar(100),
+    -> in p_designation varchar(50),
+    -> in p_salary decimal(10, 2)
+    -> )
+    -> begin
+    -> insert into employees(emp_name, designation, salary)
+    -> values (p_emp_name, p_designation, p_salary);
+    -> end
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql> call addemployee("Rohan das", "Devops Engineer", 82000.00);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> call addemployee("Aanaya iyer", "UI/UX Designer", 68000.00);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from audit;
++--------+--------+------------------+-------------+-----------------------------------+---------------------+
+| log_id | emp_id | action_performed | old_details | new_details                       | action_timestamp    |
++--------+--------+------------------+-------------+-----------------------------------+---------------------+
+|      1 |     10 | insert           | NULL        | name: Vidhi patelsalary: 90000.00 | 2026-06-04 00:22:13 |
+|      2 |     11 | insert           | NULL        | name: Rudrasalary: 62000.00       | 2026-06-04 00:22:13 |
+|      3 |     12 | insert           | NULL        | name: Krupeshsalary: 55000.00     | 2026-06-04 00:22:13 |
+|      4 |     13 | insert           | NULL        | name: Rohan dassalary: 82000.00   | 2026-06-04 00:30:02 |
+|      5 |     14 | insert           | NULL        | name: Aanaya iyersalary: 68000.00 | 2026-06-04 00:30:36 |
++--------+--------+------------------+-------------+-----------------------------------+---------------------+
+5 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
