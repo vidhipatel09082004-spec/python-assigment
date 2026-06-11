@@ -3380,6 +3380,570 @@ mysql> select * from audit;
 
 mysql>
 
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 175
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| corporatedb        |
+| information_schema |
+| joins              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| audit         |
+| bonus         |
+| departments   |
+| employees     |
+| patients      |
+| student       |
+| studentmarks  |
+| students      |
+| subjects      |
+| title         |
+| worker        |
+| worker_clone  |
++---------------+
+12 rows in set (0.00 sec)
+
+mysql> drop table students;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table students(id int primary key auto_increment, name varchar(50), age int, marks int);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table student_audit(audit_id int primary key auto_increment, student_id int, deleted_name varchar(100), deleted_at timestamp default current_timestamp);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into students(name, age, marks) values
+    -> ("Sakshi", 20, 85),
+    -> ("Krupesh", 21, 86),
+    -> ("Vidhi", 22, 89);
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++----+---------+------+-------+
+| id | name    | age  | marks |
++----+---------+------+-------+
+|  1 | Sakshi  |   20 |    85 |
+|  2 | Krupesh |   21 |    86 |
+|  3 | Vidhi   |   22 |    89 |
++----+---------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger student_ad after delete on students
+    -> for each row
+    -> begin
+    -> insert into student_audit(student_id, deleted_name) values
+    -> (old.id, old.name);
+    -> end
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql> delete from students where name = "Vidhi";
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from students;
++----+---------+------+-------+
+| id | name    | age  | marks |
++----+---------+------+-------+
+|  1 | Sakshi  |   20 |    85 |
+|  2 | Krupesh |   21 |    86 |
++----+---------+------+-------+
+2 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger student_bd before delete on students
+    -> for each row
+    -> begin
+    -> if old.marks > 85 then
+    -> signal sqlstate '45000' set message_text = 'Restricted: cannot delete a student with marks greater then 85.';
+    -> end if;
+    -> end
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql> delete from students where name = "Krupesh";
+ERROR 1644 (45000): Restricted: cannot delete a student with marks greater then 85.
+mysql> select * from student_audit;
++----------+------------+--------------+---------------------+
+| audit_id | student_id | deleted_name | deleted_at          |
++----------+------------+--------------+---------------------+
+|        1 |          3 | Vidhi        | 2026-06-08 22:50:58 |
++----------+------------+--------------+---------------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+
+
+===> Date : 10-06-2026
+
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 179
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| corporatedb        |
+| information_schema |
+| joins              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| audit         |
+| bonus         |
+| departments   |
+| employees     |
+| patients      |
+| student_audit |
+| studentmarks  |
+| students      |
+| subjects      |
+| title         |
+| worker        |
+| worker_clone  |
++---------------+
+12 rows in set (0.00 sec)
+
+mysql> create table salesTeam(emp_id int primary keu auto_increment, fullname varchar(50), region varchar(60), salesamount decimal(10, 2));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'keu auto_increment, fullname varchar(50), region varchar(60), salesamount decima' at line 1
+mysql> create table salesTeam(emp_id int primary key auto_increment, fullname varchar(50), region varchar(60), salesamount decimal(10, 2));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe salesTeam;
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| emp_id      | int           | NO   | PRI | NULL    | auto_increment |
+| fullname    | varchar(50)   | YES  |     | NULL    |                |
+| region      | varchar(60)   | YES  |     | NULL    |                |
+| salesamount | decimal(10,2) | YES  |     | NULL    |                |
++-------------+---------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into salesTeam(fullname, region, salesamount) values
+    -> ("Vidhi patel", "North", 55000),
+    -> ("Rudra", "North", 62000),
+    -> ("Parth", "South", 48000),
+    -> ("Krupesh", "South", 71000),
+    -> ("Sakshi", "West", 58000),
+    -> ("Divya", "West", 42000),
+    -> ("Hardik", "East", 33000),
+    -> ("Elu", "East", 51000),
+    -> ("Sai", "South", 88000),
+    -> ("Parisha", "North", 45000),
+    -> ("Krishna", "East", 29000),
+    -> ("Zoya", "West", 75000),
+    -> ("Reyansh", "North", 92000),
+    -> ("Anaya", "West", 61000),
+    -> ("Kvaya", "East", 50000);
+Query OK, 15 rows affected (0.03 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+mysql> select * from salesTeam;
++--------+-------------+--------+-------------+
+| emp_id | fullname    | region | salesamount |
++--------+-------------+--------+-------------+
+|      1 | Vidhi patel | North  |    55000.00 |
+|      2 | Rudra       | North  |    62000.00 |
+|      3 | Parth       | South  |    48000.00 |
+|      4 | Krupesh     | South  |    71000.00 |
+|      5 | Sakshi      | West   |    58000.00 |
+|      6 | Divya       | West   |    42000.00 |
+|      7 | Hardik      | East   |    33000.00 |
+|      8 | Elu         | East   |    51000.00 |
+|      9 | Sai         | South  |    88000.00 |
+|     10 | Parisha     | North  |    45000.00 |
+|     11 | Krishna     | East   |    29000.00 |
+|     12 | Zoya        | West   |    75000.00 |
+|     13 | Reyansh     | North  |    92000.00 |
+|     14 | Anaya       | West   |    61000.00 |
+|     15 | Kvaya       | East   |    50000.00 |
++--------+-------------+--------+-------------+
+15 rows in set (0.00 sec)
+
+mysql> with regionalperformance as(
+    -> sales fullname, region, salesamount,
+    -> Rank() over(partition by region order by salesamount desc) as salesrank,
+    -> Avg(salesamount) over(partition by region) as regionalAvg,
+    -> sum(salesamount) over (order by saleaamount desc) as runningtotal from salesTeam)
+    -> select * from regionalperformance;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sales fullname, region, salesamount,
+Rank() over(partition by region order by sa' at line 2
+mysql> with regionalperformance as(
+    -> sales fullname, region, salesamount,
+    -> Rank() over(partition by region order by salesamount desc) as salesrank,
+    -> Avg(salesamount) over(partition by region) as regionalAvg,
+    -> sum(salesamount) over (order by salesamount desc) as runningtotal from salesTeam)
+    -> select * from regionalperformance;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sales fullname, region, salesamount,
+Rank() over(partition by region order by sa' at line 2
+mysql> with regionalperformance as(
+    -> select fullname, region, salesamount,
+    -> Rank() over(partition by region order by salesamount desc) as salesrank,
+    -> Avg(salesamount) over(partition by region) as regionalAvg,
+    -> sum(salesamount) over (order by salesamount desc) as runningtotal from salesTeam)
+    -> select * from regionalperformance;
++-------------+--------+-------------+-----------+--------------+--------------+
+| fullname    | region | salesamount | salesrank | regionalAvg  | runningtotal |
++-------------+--------+-------------+-----------+--------------+--------------+
+| Reyansh     | North  |    92000.00 |         1 | 63500.000000 |     92000.00 |
+| Sai         | South  |    88000.00 |         1 | 69000.000000 |    180000.00 |
+| Zoya        | West   |    75000.00 |         1 | 59000.000000 |    255000.00 |
+| Krupesh     | South  |    71000.00 |         2 | 69000.000000 |    326000.00 |
+| Rudra       | North  |    62000.00 |         2 | 63500.000000 |    388000.00 |
+| Anaya       | West   |    61000.00 |         2 | 59000.000000 |    449000.00 |
+| Sakshi      | West   |    58000.00 |         3 | 59000.000000 |    507000.00 |
+| Vidhi patel | North  |    55000.00 |         3 | 63500.000000 |    562000.00 |
+| Elu         | East   |    51000.00 |         1 | 40750.000000 |    613000.00 |
+| Kvaya       | East   |    50000.00 |         2 | 40750.000000 |    663000.00 |
+| Parth       | South  |    48000.00 |         3 | 69000.000000 |    711000.00 |
+| Parisha     | North  |    45000.00 |         4 | 63500.000000 |    756000.00 |
+| Divya       | West   |    42000.00 |         4 | 59000.000000 |    798000.00 |
+| Hardik      | East   |    33000.00 |         3 | 40750.000000 |    831000.00 |
+| Krishna     | East   |    29000.00 |         4 | 40750.000000 |    860000.00 |
++-------------+--------+-------------+-----------+--------------+--------------+
+15 rows in set (0.01 sec)
+
+mysql>
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| corporatedb        |
+| information_schema |
+| joins              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| audit         |
+| bonus         |
+| departments   |
+| employees     |
+| patients      |
+| student       |
+| studentmarks  |
+| students      |
+| subjects      |
+| title         |
+| worker        |
+| worker_clone  |
++---------------+
+12 rows in set (0.00 sec)
+
+mysql> drop table students;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table students(id int primary key auto_increment, name varchar(50), age int, marks int);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table student_audit(audit_id int primary key auto_increment, student_id int, deleted_name varchar(100), deleted_at timestamp default current_timestamp);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into students(name, age, marks) values
+    -> ("Sakshi", 20, 85),
+    -> ("Krupesh", 21, 86),
+    -> ("Vidhi", 22, 89);
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++----+---------+------+-------+
+| id | name    | age  | marks |
++----+---------+------+-------+
+|  1 | Sakshi  |   20 |    85 |
+|  2 | Krupesh |   21 |    86 |
+|  3 | Vidhi   |   22 |    89 |
++----+---------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger student_ad after delete on students
+    -> for each row
+    -> begin
+    -> insert into student_audit(student_id, deleted_name) values
+    -> (old.id, old.name);
+    -> end
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql> delete from students where name = "Vidhi";
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from students;
++----+---------+------+-------+
+| id | name    | age  | marks |
++----+---------+------+-------+
+|  1 | Sakshi  |   20 |    85 |
+|  2 | Krupesh |   21 |    86 |
++----+---------+------+-------+
+2 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger student_bd before delete on students
+    -> for each row
+    -> begin
+    -> if old.marks > 85 then
+    -> signal sqlstate '45000' set message_text = 'Restricted: cannot delete a student with marks greater then 85.';
+    -> end if;
+    -> end
+    -> //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql> delete from students where name = "Krupesh";
+ERROR 1644 (45000): Restricted: cannot delete a student with marks greater then 85.
+mysql> select * from student_audit;
++----------+------------+--------------+---------------------+
+| audit_id | student_id | deleted_name | deleted_at          |
++----------+------------+--------------+---------------------+
+|        1 |          3 | Vidhi        | 2026-06-08 22:50:58 |
++----------+------------+--------------+---------------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+
+
+===> Date : 10-06-2026
+
+
+
+
+
+
+
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 179
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| corporatedb        |
+| information_schema |
+| joins              |
+| mdb                |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use mdb;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_mdb |
++---------------+
+| audit         |
+| bonus         |
+| departments   |
+| employees     |
+| patients      |
+| student_audit |
+| studentmarks  |
+| students      |
+| subjects      |
+| title         |
+| worker        |
+| worker_clone  |
++---------------+
+12 rows in set (0.00 sec)
+
+
+mysql> create table salesTeam(emp_id int primary key auto_increment, fullname varchar(50), region varchar(60), salesamount decimal(10, 2));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe salesTeam;
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| emp_id      | int           | NO   | PRI | NULL    | auto_increment |
+| fullname    | varchar(50)   | YES  |     | NULL    |                |
+| region      | varchar(60)   | YES  |     | NULL    |                |
+| salesamount | decimal(10,2) | YES  |     | NULL    |                |
++-------------+---------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into salesTeam(fullname, region, salesamount) values
+    -> ("Vidhi patel", "North", 55000),
+    -> ("Rudra", "North", 62000),
+    -> ("Parth", "South", 48000),
+    -> ("Krupesh", "South", 71000),
+    -> ("Sakshi", "West", 58000),
+    -> ("Divya", "West", 42000),
+    -> ("Hardik", "East", 33000),
+    -> ("Elu", "East", 51000),
+    -> ("Sai", "South", 88000),
+    -> ("Parisha", "North", 45000),
+    -> ("Krishna", "East", 29000),
+    -> ("Zoya", "West", 75000),
+    -> ("Reyansh", "North", 92000),
+    -> ("Anaya", "West", 61000),
+    -> ("Kvaya", "East", 50000);
+Query OK, 15 rows affected (0.03 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+mysql> select * from salesTeam;
++--------+-------------+--------+-------------+
+| emp_id | fullname    | region | salesamount |
++--------+-------------+--------+-------------+
+|      1 | Vidhi patel | North  |    55000.00 |
+|      2 | Rudra       | North  |    62000.00 |
+|      3 | Parth       | South  |    48000.00 |
+|      4 | Krupesh     | South  |    71000.00 |
+|      5 | Sakshi      | West   |    58000.00 |
+|      6 | Divya       | West   |    42000.00 |
+|      7 | Hardik      | East   |    33000.00 |
+|      8 | Elu         | East   |    51000.00 |
+|      9 | Sai         | South  |    88000.00 |
+|     10 | Parisha     | North  |    45000.00 |
+|     11 | Krishna     | East   |    29000.00 |
+|     12 | Zoya        | West   |    75000.00 |
+|     13 | Reyansh     | North  |    92000.00 |
+|     14 | Anaya       | West   |    61000.00 |
+|     15 | Kvaya       | East   |    50000.00 |
++--------+-------------+--------+-------------+
+15 rows in set (0.00 sec)
+
+mysql> with regionalperformance as(
+    -> select fullname, region, salesamount,
+    -> Rank() over(partition by region order by salesamount desc) as salesrank,
+    -> Avg(salesamount) over(partition by region) as regionalAvg,
+    -> sum(salesamount) over (order by salesamount desc) as runningtotal from salesTeam)
+    -> select * from regionalperformance;
++-------------+--------+-------------+-----------+--------------+--------------+
+| fullname    | region | salesamount | salesrank | regionalAvg  | runningtotal |
++-------------+--------+-------------+-----------+--------------+--------------+
+| Reyansh     | North  |    92000.00 |         1 | 63500.000000 |     92000.00 |
+| Sai         | South  |    88000.00 |         1 | 69000.000000 |    180000.00 |
+| Zoya        | West   |    75000.00 |         1 | 59000.000000 |    255000.00 |
+| Krupesh     | South  |    71000.00 |         2 | 69000.000000 |    326000.00 |
+| Rudra       | North  |    62000.00 |         2 | 63500.000000 |    388000.00 |
+| Anaya       | West   |    61000.00 |         2 | 59000.000000 |    449000.00 |
+| Sakshi      | West   |    58000.00 |         3 | 59000.000000 |    507000.00 |
+| Vidhi patel | North  |    55000.00 |         3 | 63500.000000 |    562000.00 |
+| Elu         | East   |    51000.00 |         1 | 40750.000000 |    613000.00 |
+| Kvaya       | East   |    50000.00 |         2 | 40750.000000 |    663000.00 |
+| Parth       | South  |    48000.00 |         3 | 69000.000000 |    711000.00 |
+| Parisha     | North  |    45000.00 |         4 | 63500.000000 |    756000.00 |
+| Divya       | West   |    42000.00 |         4 | 59000.000000 |    798000.00 |
+| Hardik      | East   |    33000.00 |         3 | 40750.000000 |    831000.00 |
+| Krishna     | East   |    29000.00 |         4 | 40750.000000 |    860000.00 |
++-------------+--------+-------------+-----------+--------------+--------------+
+15 rows in set (0.01 sec)
+
+
+
+
+
+
+
+
+
+
 
 
 
